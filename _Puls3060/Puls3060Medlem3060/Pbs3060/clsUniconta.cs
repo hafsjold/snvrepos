@@ -228,7 +228,7 @@ namespace nsPbs3060
             var crit = new List<PropValuePair>();
             var pair = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), "Dag");
             crit.Add(pair);
-            var task1 = m_api.Query<GLDailyJournalClient>(null, crit);
+            var task1 = m_api.Query<GLDailyJournalClient>(crit);
             task1.Wait();
             var col = task1.Result;
             var rec_Master = col.FirstOrDefault();

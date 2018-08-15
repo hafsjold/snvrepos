@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Uniconta.API.System;
 using Uniconta.ClientTools.DataModel;
+//using Uniconta.ClientTools.DataModel;
 using Uniconta.Common;
 using Uniconta.DataModel;
 
@@ -54,7 +55,7 @@ namespace nsPbs3060
                 var critDebtor = new List<PropValuePair>();
                 var pairDebtor = PropValuePair.GenereteWhereElements("subscriberid", typeof(String), m.subscriber_id.ToString());
                 critDebtor.Add(pairDebtor);
-                var taskDebtor = m_api.Query<DebtorClientUser>(null, critDebtor);
+                var taskDebtor = m_api.Query<DebtorClientUser>(critDebtor);
                 taskDebtor.Wait();
                 var resultDebtor = taskDebtor.Result;
                 var antalDebtor = resultDebtor.Count();
@@ -178,7 +179,7 @@ namespace nsPbs3060
                 var critDebtor = new List<PropValuePair>();
                 var pairDebtor = PropValuePair.GenereteWhereElements("subscriberid", typeof(String), m.subscriber_id.ToString());
                 critDebtor.Add(pairDebtor);
-                var taskDebtor = m_api.Query<DebtorClientUser>(null, critDebtor);
+                var taskDebtor = m_api.Query<DebtorClientUser>(critDebtor);
                 taskDebtor.Wait();
                 var resultDebtor = taskDebtor.Result;
                 var antalDebtor = resultDebtor.Count();
@@ -287,7 +288,7 @@ namespace nsPbs3060
                 var critMedlem = new List<PropValuePair>();
                 var pairMedlem = PropValuePair.GenereteWhereElements("subscriberid", typeof(String), rs.subscriber_id.ToString());
                 critMedlem.Add(pairMedlem);
-                var taskMedlem = m_api.Query<Medlem>(null, critMedlem);
+                var taskMedlem = m_api.Query<Medlem>(critMedlem);
                 taskMedlem.Wait();
                 var resultMedlem = taskMedlem.Result;
                 var antalMedlem = resultMedlem.Count();
@@ -325,7 +326,7 @@ namespace nsPbs3060
                 }
             }
         }
-
+        /*
         public void EngangsOpdateringAfDebtor()
         {
             var taskDebtor = m_api.Query<DebtorClientUser>();
@@ -338,7 +339,7 @@ namespace nsPbs3060
                     var critMedlem = new List<PropValuePair>();
                     var pairMedlem = PropValuePair.GenereteWhereElements("subscriberid", typeof(String), d.subscriberid.ToString());
                     critMedlem.Add(pairMedlem);
-                    var taskMedlem = m_api.Query<Medlem>(null, critMedlem);
+                    var taskMedlem = m_api.Query<Medlem>(ncritMedlem);
                     taskMedlem.Wait();
                     var resultMedlem = taskMedlem.Result;
                     var antalMedlem = resultMedlem.Count();
@@ -358,6 +359,7 @@ namespace nsPbs3060
             }
 
         }
+        */
 
         public void TestTabel()
         {
@@ -374,7 +376,7 @@ namespace nsPbs3060
                 else if (tab.Name == "MyPost")
                 {
                     tab.Detail = false;
-                    tab.Master = 1163;
+                    //tab.Master = 1163;
                     var taskUpdateTable = m_api.Update(tab);
                     taskUpdateTable.Wait();
                     var Err = taskUpdateTable.Result;

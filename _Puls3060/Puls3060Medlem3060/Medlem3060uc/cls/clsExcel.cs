@@ -416,7 +416,7 @@ namespace Medlem3060uc
             string dateinterval = string.Format("{0}..{1}", CurrentCompanyFinanceYear._FromDate.ToShortDateString(), CurrentCompanyFinanceYear._ToDate.ToShortDateString());
             var pair = PropValuePair.GenereteWhereElements("Date", typeof(DateTime), dateinterval);
             crit.Add(pair);
-            var task4 = api.Query<GLTrans>(null, crit);
+            var task4 = api.Query<GLTrans>(crit);
             task4.Wait();
             var karGLTrans = task4.Result;
 

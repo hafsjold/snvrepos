@@ -80,7 +80,7 @@ namespace nsPbs3060
             var crit = new List<PropValuePair>();
             var pair = PropValuePair.GenereteWhereElements("KeyName", typeof(string), "Mobilepay");
             crit.Add(pair);
-            var taskQryBankStatment = m_api.Query<BankStatementClient>(null, crit);
+            var taskQryBankStatment = m_api.Query<BankStatementClient>(crit);
             taskQryBankStatment.Wait();
             var col = taskQryBankStatment.Result;
             if (col.Count() == 1)
@@ -140,7 +140,7 @@ namespace nsPbs3060
             var crit = new List<PropValuePair>();
             var pair = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), "Dag");
             crit.Add(pair);
-            var task1 = m_api.Query<GLDailyJournalClient>(null, crit);
+            var task1 = m_api.Query<GLDailyJournalClient>(crit);
             task1.Wait();
             var col = task1.Result;
             var rec_Master = col.FirstOrDefault();
