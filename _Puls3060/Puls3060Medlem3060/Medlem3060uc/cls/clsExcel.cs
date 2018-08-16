@@ -57,14 +57,168 @@ namespace Medlem3060uc
             rec_regnskab_Eksportmappe = Environment.ExpandEnvironmentVariables(rec_regnskab_Eksportmappe);
             string SaveAs = rec_regnskab_Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
 
+            List<clsMedlemExternAll> MedlemmerAll = new List<clsMedlemExternAll>();
+            var api = UCInitializer.GetBaseAPI;
+            var task1 = api.Query<Medlem>();
+            task1.Wait();
+            var Result1 = task1.Result;
+            foreach (var m in Result1)
+            {
+                clsMedlemExternAll recMedlem = new clsMedlemExternAll
+                    {
+                        Nr=int.Parse(m._KeyStr),
+                        Navn = m._KeyName,
+                        Adresse = m.Adresse,
+                        Postnr = m.Postnr,
+                        Bynavn = m.By,
+                        Telefon = m.Mobil,
+                        Email = m.Email,
+                        Kon = m.Gender,
+                        FodtAar = m.Fodtaar.ToString(),
+                        MedlemTil = m.medlemtil,
+                        Status = m.status
+                    };
+                    MedlemmerAll.Add(recMedlem);
+            }
+
+            using (new ExcelUILanguageHelper())
+            {
+                try
+                {
+                    //Start Excel and get Application object.
+                    oXL = new _Excel.Application();
+                    oXL.Visible = true;
+                    //Get a new workbook.
+
+                    oWB = oXL.Workbooks.Add((Missing.Value));
+                    oSheet = (_Excel._Worksheet)oWB.ActiveSheet;
+                    oWindow = oXL.ActiveWindow;
+
+                    if (pSheetName.Length > 0) oSheet.Name = pSheetName.Substring(0, pSheetName.Length > 34 ? 34 : pSheetName.Length);
+                    int row = 1;
+                    this.MainformProgressBar.Value = 0;
+                    this.MainformProgressBar.Minimum = 0;
+                    this.MainformProgressBar.Maximum = MedlemmerAll.Count();
+                    this.MainformProgressBar.Step = 1;
+                    this.MainformProgressBar.Visible = true;
+                    foreach (clsMedlemExternAll m in MedlemmerAll)
+                    {
+                        this.MainformProgressBar.PerformStep();
+                        row++;
+                        Type objectType = m.GetType();
+                        PropertyInfo[] properties = objectType.GetProperties();
+                        int col = 0;
+                        foreach (PropertyInfo property in properties)
+                        {
+                            col++;
+                            string Name = property.Name;
+                            //string NamePropertyType = property.GetValue(m, null).GetType().ToString();
+                            oSheet.Cells[row, col] = property.GetValue(m, null);
+                            if (row == 2)
+                            {
+                                object[] CustomAttributes = property.GetCustomAttributes(false);
+                                foreach (var att in CustomAttributes)
+                                {
+                                    Type tp = att.GetType();
+                                    if (tp.ToString() == "Medlem3060uc.Fieldattr")
+                                    {
+                                        Fieldattr attr = (Fieldattr)att;
+                                        string heading = attr.Heading;
+                                        oSheet.Cells[1, col] = heading;
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    oRng = (_Excel.Range)oSheet.Rows[1, Missing.Value];
+                    oRng.Font.Name = "Arial";
+                    oRng.Font.Size = 12;
+                    oRng.Font.Strikethrough = false;
+                    oRng.Font.Superscript = false;
+                    oRng.Font.Subscript = false;
+                    oRng.Font.OutlineFont = false;
+                    oRng.Font.Shadow = false;
+                    oRng.Font.Bold = true;
+                    oRng.HorizontalAlignment = _Excel.Constants.xlCenter;
+                    oRng.VerticalAlignment = _Excel.Constants.xlBottom;
+                    oRng.WrapText = false;
+                    oRng.Orientation = 0;
+                    oRng.AddIndent = false;
+                    oRng.IndentLevel = 0;
+                    oRng.ShrinkToFit = false;
+                    oRng.MergeCells = false;
+
+                    string BottomRight = "J" + row.ToString();
+                    oRng = oSheet.get_Range("J2", BottomRight);
+                    oRng.NumberFormat = "dd-mm-yyyy";
+
+                    oSheet.Cells.EntireColumn.AutoFit();
+
+                    oWindow.SplitRow = 1;
+                    oWindow.SplitColumn = 2;
+                    oWindow.FreezePanes = true;
+
+                    oSheet.get_Range("A1", Missing.Value).Select();
+
+                    for (var i = oWB.Worksheets.Count; i > 0; i--)
+                    {
+                        _Excel._Worksheet oSheetWrk = (_Excel._Worksheet)oWB.Worksheets.get_Item(i);
+                        if (oSheetWrk.Name != "MedlemManagement")
+                        {
+                            oSheetWrk.Delete();
+                        }
+                    }
+
+
+                    oWB.SaveAs(SaveAs, _Excel.XlFileFormat.xlWorkbookDefault, "", "", false, false, _Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+                    oWB.Saved = true;
+                    oXL.Visible = true;
+                    this.MainformProgressBar.Visible = false;
+
+                    this.imapSaveExcelFile(SaveAs, "Puls3060 Medlems-oplysninger");
+
+                    //oXL.Quit();
+                    //oXL = null;
+                }
+                catch (Exception theException)
+                {
+                    String errorMessage;
+                    errorMessage = "Error: ";
+                    errorMessage = String.Concat(errorMessage, theException.Message);
+                    errorMessage = String.Concat(errorMessage, " Line: ");
+                    errorMessage = String.Concat(errorMessage, theException.Source);
+
+                    MessageBox.Show(errorMessage, "Error");
+                }
+            }
+
+        }
+
+        private void excelManagement_old()
+        {
+            DateTime pReadDate = DateTime.Now;
+            DateTime pRestance30Date = pReadDate.AddDays(-30);
+            string pSheetName = "MedlemManagement";
+
+            _Excel.Application oXL = null; ;
+            _Excel._Workbook oWB;
+            _Excel._Worksheet oSheet;
+            _Excel.Window oWindow;
+            _Excel.Range oRng;
+
+            string rec_regnskab_Eksportmappe = @"%userprofile%\Documents\SummaSummarum"; // work
+            rec_regnskab_Eksportmappe = Environment.ExpandEnvironmentVariables(rec_regnskab_Eksportmappe);
+            string SaveAs = rec_regnskab_Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
+
             puls3060_nyEntities jdb = new puls3060_nyEntities(true);
 
             var qry = from u in jdb.ecpwt_users
                       join m in jdb.ecpwt_rsmembership_membership_subscribers on u.id equals m.user_id
-                      where m.membership_id == 6 
+                      where m.membership_id == 6
                       &&
                       (
-                        m.status == 0 
+                        m.status == 0
                         || (m.status == 2 && m.membership_end > pRestance30Date)
                         || (m.status == 3 && m.membership_end > pReadDate)
                       )
@@ -72,8 +226,8 @@ namespace Medlem3060uc
                       orderby u.name
                       select new recMedlem
                       {
-                          id =u.id,
-                          name =u.name,
+                          id = u.id,
+                          name = u.name,
                           f1 = a.f1,
                           f4 = a.f4,
                           f2 = a.f2,
@@ -112,7 +266,8 @@ namespace Medlem3060uc
                         MedlemTil = m.membership_end,
                         Status = medlemStatus(m.status)
                     };
-                    MedlemmerAll.Add(recMedlem); }
+                    MedlemmerAll.Add(recMedlem);
+                }
                 catch
                 {
                     recMedlem = new clsMedlemExternAll

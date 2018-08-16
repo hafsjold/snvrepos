@@ -513,5 +513,10 @@ namespace Medlem3060uc
                 "OK", //rightButton
                 global::Medlem3060uc.Properties.Resources.Message_info); //iconSet  
         }
+
+        private void medlemsListeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            excelManagement();
+        }
     }
 }

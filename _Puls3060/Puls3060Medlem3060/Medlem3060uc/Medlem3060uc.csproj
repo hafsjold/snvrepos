@@ -269,6 +269,7 @@
     <Compile Include="frm\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="kar\Medlem.cs" />
     <Compile Include="pipeServer.cs">
       <SubType>Form</SubType>
     </Compile>
