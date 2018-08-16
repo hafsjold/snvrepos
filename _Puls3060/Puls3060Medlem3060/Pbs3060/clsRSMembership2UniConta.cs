@@ -403,6 +403,26 @@ namespace nsPbs3060
             //Uniconta.ClientTools.DataModel.TableFieldsClient ss;       
         }
 
+        public void TestFysiskBilag()
+        {
+            var taskTable = m_api.Query<VouchersClient>();
+            taskTable.Wait();
+            var resultTable = taskTable.Result;
+            foreach (var recEoucher in resultTable)
+            {
+
+                if (recEoucher.PrimaryKeyId == 2263)
+                {
+                    recEoucher.DCPostType = "Puls3060Import";
+                    var taskUpdateTable = m_api.Update(recEoucher);
+                    taskUpdateTable.Wait();
+                    var Err = taskUpdateTable.Result;
+                }
+
+
+
+            }
+        }
         public void testBetalinger()
         {
             var taskCreditorOrder = m_api.Query<CreditorTransOpenClient>();

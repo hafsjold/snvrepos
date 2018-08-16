@@ -59,12 +59,13 @@
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripImpoetEmailBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDanskeErhvervExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolExportMobilePay = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripImpoetEmailBilag = new System.Windows.Forms.ToolStripButton();
+            this.medlemsListeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -144,19 +145,19 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(102, 6);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Visible = false;
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
@@ -188,7 +189,8 @@
             this.impoerEmailBilagToolStripMenuItem,
             this.exportDanskeErhvervToolStripMenuItem,
             this.exportMobilePayToolStripMenuItem,
-            this.posterTilRegnskabToolStripMenuItem});
+            this.posterTilRegnskabToolStripMenuItem,
+            this.medlemsListeToolStripMenuItem});
             this.uniContaToolStripMenuItem.Name = "uniContaToolStripMenuItem";
             this.uniContaToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.uniContaToolStripMenuItem.Text = "UniConta";
@@ -239,56 +241,56 @@
             // sysInfoToolStripMenuItem
             // 
             this.sysInfoToolStripMenuItem.Name = "sysInfoToolStripMenuItem";
-            this.sysInfoToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.sysInfoToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.sysInfoToolStripMenuItem.Text = "SysInfo";
             this.sysInfoToolStripMenuItem.Click += new System.EventHandler(this.sysInfoToolStripMenuItem_Click);
             // 
             // kontingentToolStripMenuItem
             // 
             this.kontingentToolStripMenuItem.Name = "kontingentToolStripMenuItem";
-            this.kontingentToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.kontingentToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.kontingentToolStripMenuItem.Text = "Kontingent";
             this.kontingentToolStripMenuItem.Click += new System.EventHandler(this.kontingentToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(214, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(166, 22);
             this.toolStripMenuItem1.Text = "Kreditor";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
             // 
             // pbsfilesToolStripMenuItem
             // 
             this.pbsfilesToolStripMenuItem.Name = "pbsfilesToolStripMenuItem";
-            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.pbsfilesToolStripMenuItem.Text = "Pbsfiles";
             this.pbsfilesToolStripMenuItem.Click += new System.EventHandler(this.pbsfilesToolStripMenuItem_Click);
             // 
             // infoTekstToolStripMenuItem
             // 
             this.infoTekstToolStripMenuItem.Name = "infoTekstToolStripMenuItem";
-            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.infoTekstToolStripMenuItem.Text = "Info tekst";
             this.infoTekstToolStripMenuItem.Click += new System.EventHandler(this.infoTekstToolStripMenuItem_Click);
             // 
             // reSendToolStripMenuItem
             // 
             this.reSendToolStripMenuItem.Name = "reSendToolStripMenuItem";
-            this.reSendToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.reSendToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.reSendToolStripMenuItem.Text = "ReSend";
             this.reSendToolStripMenuItem.Click += new System.EventHandler(this.reSendToolStripMenuItem_Click);
             // 
             // opdaterAppDataToolStripMenuItem
             // 
             this.opdaterAppDataToolStripMenuItem.Name = "opdaterAppDataToolStripMenuItem";
-            this.opdaterAppDataToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.opdaterAppDataToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.opdaterAppDataToolStripMenuItem.Text = "Opdater AppData";
             this.opdaterAppDataToolStripMenuItem.Click += new System.EventHandler(this.opdaterAppDataToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem1
             // 
             this.testToolStripMenuItem1.Name = "testToolStripMenuItem1";
-            this.testToolStripMenuItem1.Size = new System.Drawing.Size(214, 22);
+            this.testToolStripMenuItem1.Size = new System.Drawing.Size(166, 22);
             this.testToolStripMenuItem1.Text = "Test";
             this.testToolStripMenuItem1.Click += new System.EventHandler(this.testToolStripMenuItem1_Click);
             // 
@@ -321,6 +323,16 @@
             this.toolStrip1.Size = new System.Drawing.Size(1024, 25);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripImpoetEmailBilag
+            // 
+            this.toolStripImpoetEmailBilag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripImpoetEmailBilag.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripImpoetEmailBilag.Name = "toolStripImpoetEmailBilag";
+            this.toolStripImpoetEmailBilag.Size = new System.Drawing.Size(108, 22);
+            this.toolStripImpoetEmailBilag.Text = "Import Email Bilag";
+            this.toolStripImpoetEmailBilag.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.toolStripImpoetEmailBilag.Click += new System.EventHandler(this.toolStripImpoetEmailBilag_Click);
             // 
             // toolStripSeparator3
             // 
@@ -357,15 +369,12 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripImpoetEmailBilag
+            // medlemsListeToolStripMenuItem
             // 
-            this.toolStripImpoetEmailBilag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripImpoetEmailBilag.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripImpoetEmailBilag.Name = "toolStripImpoetEmailBilag";
-            this.toolStripImpoetEmailBilag.Size = new System.Drawing.Size(108, 22);
-            this.toolStripImpoetEmailBilag.Text = "Import Email Bilag";
-            this.toolStripImpoetEmailBilag.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            this.toolStripImpoetEmailBilag.Click += new System.EventHandler(this.toolStripImpoetEmailBilag_Click);
+            this.medlemsListeToolStripMenuItem.Name = "medlemsListeToolStripMenuItem";
+            this.medlemsListeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.medlemsListeToolStripMenuItem.Text = "Medlems Liste";
+            this.medlemsListeToolStripMenuItem.Click += new System.EventHandler(this.medlemsListeToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -435,6 +444,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton toolExportMobilePay;
         private System.Windows.Forms.ToolStripButton toolStripImpoetEmailBilag;
+        private System.Windows.Forms.ToolStripMenuItem medlemsListeToolStripMenuItem;
     }
 }
 
