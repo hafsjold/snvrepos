@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Data.SqlClient;
 using Pbs3060;
 using Uniconta.API.System;
+using NLog;
 
 namespace MedlemServicePuls3060
 {
@@ -26,19 +27,26 @@ namespace MedlemServicePuls3060
         UpdateKanSlettes,
         JobQMaintenance,
         SendEmailKviteringer,
-        OpdaterTransUserData
+        OpdaterTransUserData,
+        ImportEmailBilag,
     }
+
 
     public class mcMedlem3060Service : ServiceBase
     {
+        public  Logger Log;
+
         public static EventWaitHandle Service_waitStopHandle = new ManualResetEvent(false);
         static Thread _SchedulerThread;
 
         public mcMedlem3060Service()
         {
+            Log = LogManager.GetLogger("databaseLogger");
+
             this.ServiceName = "mcMedlem3060Service";
             Console.WriteLine("Medlem3060Service Starter #2");
-            try
+            //Log.Log(LogLevel.Info, "Medlem3060Service Starter #2");
+           try
             {
                 UCInitializer.UnicontaLogin();
             }
@@ -82,6 +90,8 @@ namespace MedlemServicePuls3060
             //JobWorker("KontingentNyeMedlemmer", 99999);
             //JobWorker("SendEmailRykker", 99999); // Tested OK 23-7-2018
             //JobWorker("SendEmailKviteringer", 99999);
+            //JobWorker("ImportEmailBilag", 99999);
+
 
             JobQMaintenance();
             LoadSchedule();
@@ -91,6 +101,8 @@ namespace MedlemServicePuls3060
                 try
                 {
                     Console.WriteLine(string.Format("Medlem3060Service Scheduler() loop start {0}", DateTime.Now.ToShortTimeString()));
+                    Log.Log(LogLevel.Info, "Medlem3060Service Scheduler() loop start");
+
                     int? id = null;
                     string jobname = null;
                     if (JobQueueNext(ref id, ref jobname) == 0)
@@ -238,6 +250,13 @@ namespace MedlemServicePuls3060
                             if ((AntalKvit > 0))
                                 objPbs601d.kvitering_email_lobnr(m_dbData3060, lobnrf, apif);
                             objPbs601d = null;
+                            break;
+
+                        case enumTask.ImportEmailBilag:
+                            CrudAPI apig = UCInitializer.GetBaseAPI;
+                            clsUnicontaHelp objUnicontaHelp = new clsUnicontaHelp(apig);
+                            objUnicontaHelp.ImportEmailBilag();
+                            objUnicontaHelp = null;
                             break;
 
                         default:

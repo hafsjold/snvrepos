@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Pbs3060;
 using Uniconta.API.System;
+using Uniconta.ClientTools.DataModel;
 using Uniconta.Common;
 
 namespace TestPbs3060
@@ -71,11 +72,34 @@ namespace TestPbs3060
                            ).ToList();
             }
             */
-            clsUniconta objUniconta = new clsUniconta(p_dbData3060, api);
-            objUniconta.BogforIndBetalinger();
+            //clsUniconta objUniconta = new clsUniconta(p_dbData3060, api);
+            //objUniconta.BogforIndBetalinger();
 
             //clsHelp.konverterNytMedlem(p_dbData3060, api);
             //clsHelp.update_betlin(p_dbData3060);
+
+            TestFysiskBilag();
         }
+
+        static public void TestFysiskBilag()
+        {
+            CrudAPI api = UCInitializer.GetBaseAPI;
+            var taskTable = api.Query<VouchersClient>();
+            taskTable.Wait();
+            var resultTable = taskTable.Result;
+            foreach (var recEoucher in resultTable)
+            {
+                if (recEoucher.PrimaryKeyId == 2263)
+                {
+                    recEoucher.Amount = 234;
+                    var taskUpdateTable = api.Update(recEoucher);
+                    taskUpdateTable.Wait();
+                    var Err = taskUpdateTable.Result;
+                }
+
+            }
+        }
+
+
     }
 }
