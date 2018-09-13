@@ -545,9 +545,11 @@ namespace Pbs3060
                     item[1] = sNavn;
                     item[2] = m.Adresse;
                     item[3] = m.Postnr;
-                    item[4] = string.Format("{0:dd-MM-yyy}", KontingentFradato);
+                    //item[4] = string.Format("{0:dd-MM-yyy}", KontingentFradato);
+                    item[4] = KontingentFradato.ToString();
                     item[5] = ikontingent.ToString();
-                    item[6] = string.Format("{0:dd-MM-yyy}", KontingentTildato);
+                    //item[6] = string.Format("{0:dd-MM-yyy}", KontingentTildato);
+                    item[6] = KontingentTildato.ToString();
                     item[7] = (indmeldelse) ? "J" : "N";
                     item[8] = (tilmeldtpbs) ? "J" : "N";
                     item[9] = m.subscriberid.ToString(); ;
@@ -879,8 +881,8 @@ namespace Pbs3060
                 };
                 rec_tilpbs.Tblfak.Add(rec_fak);
                 wantalfakturaer++;
+                p_dbData3060.SaveChanges();
             }
-            p_dbData3060.SaveChanges();
             return new Tuple<int, int>(wantalfakturaer, lobnr);
 
         }

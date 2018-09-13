@@ -12,8 +12,8 @@ namespace Pbs3060
     {
         public void PbsAutoKontingent(dbData3060DataContext m_dbData3060, CrudAPI api)
         {
-            DateTime Nu = new DateTime(2018, 8, 13); //<-------- DEBUG
-            //DateTime Nu = DateTime.Now;
+            //DateTime Nu = new DateTime(2018, 8, 13); //<-------- DEBUG
+            DateTime Nu = DateTime.Now;
             int Dag = Nu.Day;
             if (Dag > 13)
                 return;
