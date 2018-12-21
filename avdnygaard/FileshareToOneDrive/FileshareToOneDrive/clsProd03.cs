@@ -41,7 +41,8 @@ namespace FileshareToOneDrive
 
 
 
-            var qryfiles = clsContent.m_db.tblPath.Local.Where(f => f.serverPathType == "Folder").Where(f => f.spSite == recServer.spSite).Where(f => f.build == true).Where(f => f.error == null).OrderBy(f => f.serverPath);
+            //var qryfiles = clsContent.m_db.tblPath.Local.Where(f => f.serverPathType == "Folder").Where(f => f.spSite == recServer.spSite).Where(f => f.build == true).Where(f => f.error == null).OrderBy(f => f.serverPath);
+            var qryfiles = clsContent.m_db.tblPath.Local.Where(f => f.serverPathType == "Folder").Where(f => f.spSite == recServer.spSite).OrderBy(f => f.serverPath);
             m_totfolders = qryfiles.Count();
             m_ifolder = 0;
             foreach (var rec in qryfiles)
@@ -147,8 +148,8 @@ namespace FileshareToOneDrive
             }
 
 
-            var qryfiles = clsContent.m_db.tblPath.Local.Where(f => f.serverPathType == "File").Where(f => f.spSite == recServer.spSite).Where(f => f.build == true).Where(f => f.error == null).OrderBy(f => f.serverPath);
-            //var qryfiles = clsContent.m_db.tblPath.Local.Where(f => f.serverPathType == "File").Where(f => f.spSite == recServer.spSite).Where(f => f.error != null).Where(f => f.spPathExists != true).OrderBy(f => f.serverPath);
+            //var qryfiles = clsContent.m_db.tblPath.Local.Where(f => f.serverPathType == "File").Where(f => f.spSite == recServer.spSite).Where(f => f.build == true).Where(f => f.error == null).OrderBy(f => f.serverPath);
+            var qryfiles = clsContent.m_db.tblPath.Local.Where(f => f.serverPathType == "File").Where(f => f.spSite == recServer.spSite).Where(f => f.spPathExists != true).OrderBy(f => f.serverPath);
             m_totfiles = qryfiles.Count();
             m_ifile = 0;
             foreach (var rec in qryfiles)
