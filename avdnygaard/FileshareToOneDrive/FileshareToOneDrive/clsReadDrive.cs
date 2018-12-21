@@ -9,45 +9,44 @@ namespace FileshareToOneDrive
 {
     public class clsReadDrive
     {
-        private List<clsServer> m_servers;
-
-
         private string[] filter =
         {
             @"#recycle"
         };
 
-        public clsReadDrive()
-        {
-            m_servers = Program.m_servers;
-        }
-
-        public void load(string pServerPathType)
+        public void load(string pServerPathType, clsServer recServer)
         {
             dbSharePointEntities db = new dbSharePointEntities();
             db.tblPath.Load();
 
-            foreach (var s in m_servers)
+
+            string[] files;
+            if (recServer.topFoldersExclude == null)
             {
-                string[] files;
                 if (pServerPathType == "File")
                 {
-                    files = System.IO.Directory.GetFiles(s.serverDrev, "*", System.IO.SearchOption.AllDirectories);
+                    files = System.IO.Directory.GetFiles(recServer.serverDrev, "*", System.IO.SearchOption.AllDirectories);
                 }
                 else // == "Folder"
                 {
-                    files = System.IO.Directory.GetDirectories(s.serverDrev, "*", System.IO.SearchOption.AllDirectories);
+                    files = System.IO.Directory.GetDirectories(recServer.serverDrev, "*", System.IO.SearchOption.AllDirectories);
                 }
+            }
+            else
+            {
+                string[] tffiles;
+                List<string> filesList = new List<string>();
+                var topFoldersExclude = recServer.topFoldersExclude;
 
-                var files1 = files.ToList();
-                files1.Sort();
-                int i = 0;
-                foreach (var file in files1)
+                var topFolders = System.IO.Directory.GetDirectories(recServer.serverDrev, "*", System.IO.SearchOption.TopDirectoryOnly);
+                var topFiles = System.IO.Directory.GetFiles(recServer.serverDrev, "*", System.IO.SearchOption.TopDirectoryOnly);
+
+                foreach (var tf in topFolders)
                 {
-                    var bfilter = false; 
-                    foreach (var f in filter)
+                    var bfilter = false;
+                    foreach (var f in topFoldersExclude)
                     {
-                        if (file.ToUpperInvariant().Contains(f.ToUpperInvariant()))
+                        if (tf.ToUpperInvariant().Contains(f.ToUpperInvariant()))
                         {
                             bfilter = true;
                             break;
@@ -55,38 +54,69 @@ namespace FileshareToOneDrive
                     }
                     if (bfilter) continue;
 
-                    Console.WriteLine((++i).ToString());
-                    var qryfile = db.tblPath.Local.Where(f => f.serverPath == file);
-                    if (qryfile.Count() == 0)
+                    if (pServerPathType == "File")
                     {
-                        tblPath rec = new tblPath()
-                        {
-                            serverDrev = s.serverDrev,
-                            localDrevLetter = s.localDrevLetter,
-                            serverPath = file,
-                            spSite = s.spSite,
-                            spSiteType = s.spSiteType,
-                            build = true,
-                            serverPathType = pServerPathType
-                        };
-                        try
-                        {
-                            db.tblPath.Local.Add(rec);
-                            db.SaveChanges();
-                            Console.WriteLine(file);
-                        }
-                        catch (Exception e)
-                        {
-                            int x = 1;
-                            //duplicate
-                        }
+                        tffiles = System.IO.Directory.GetFiles(tf, "*", System.IO.SearchOption.AllDirectories);
+                        filesList.AddRange(topFiles);
                     }
-
+                    else // == "Folder"
+                    {
+                        tffiles = System.IO.Directory.GetDirectories(tf, "*", System.IO.SearchOption.AllDirectories);
+                        filesList.Add(tf);
+                   }
+                    filesList.AddRange(tffiles);
                 }
+                files = filesList.ToArray();
             }
 
+            var files1 = files.ToList();
+            files1.Sort();
+            int i = 0;
+            foreach (var file in files1)
+            {
+                var bfilter = false;
+                foreach (var f in filter)
+                {
+                    if (file.ToUpperInvariant().Contains(f.ToUpperInvariant()))
+                    {
+                        bfilter = true;
+                        break;
+                    }
+                }
+                if (bfilter) continue;
 
+                Console.WriteLine((++i).ToString());
+                var qryfile = db.tblPath.Local.Where(f => f.serverPath == file);
+                if (qryfile.Count() == 0)
+                {
+                    tblPath rec = new tblPath()
+                    {
+                        serverDrev = recServer.serverDrev,
+                        localDrevLetter = recServer.localDrevLetter,
+                        serverPath = file,
+                        spSite = recServer.spSite,
+                        spSiteType = recServer.spSiteType,
+                        build = true,
+                        serverPathType = pServerPathType
+                    };
+                    try
+                    {
+                        db.tblPath.Local.Add(rec);
+                        db.SaveChanges();
+                        Console.WriteLine(file);
+                    }
+                    catch (Exception e)
+                    {
+                        int x = 1;
+                        //duplicate
+                    }
+                }
+
+            }
         }
+
+
+
 
     }
 
@@ -96,5 +126,7 @@ namespace FileshareToOneDrive
         public string localDrevLetter { get; set; }
         public string spSite { get; set; }
         public string spSiteType { get; set; }
+        public List<string> topFoldersExclude { get; set; }
+
     }
 }

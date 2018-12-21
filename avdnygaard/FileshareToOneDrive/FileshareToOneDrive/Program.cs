@@ -10,28 +10,36 @@ namespace FileshareToOneDrive
     {
         static public List<clsServer> m_servers = new List<clsServer>()
         {
+           new clsServer()
+            {
+                 serverDrev = @"\\SYNOLOGY_N\HN\",
+                 localDrevLetter = "O",
+                 spSite = "/hn",
+                 spSiteType = "SharePoint",
+            },
+
             new clsServer()
             {
                  serverDrev = @"\\SYNOLOGY_N\CM\",
                  localDrevLetter = "P",
-                 spSite = "cm@adv-nygaard.dk",
-                 spSiteType = "OneDrive",
+                 spSite = "/cm",
+                 spSiteType = "SharePoint",
             },
 
             new clsServer()
             {
                  serverDrev = @"\\SYNOLOGY_N\MR\",
                  localDrevLetter = "Q",
-                 spSite = "mr@adv-nygaard.dk",
-                 spSiteType = "OneDrive",
+                 spSite = "/mr",
+                 spSiteType = "SharePoint",
             },
 
             new clsServer()
             {
                  serverDrev = @"\\SYNOLOGY_N\HJ\",
                  localDrevLetter = "R",
-                 spSite = "hj@adv-nygaard.dk",
-                 spSiteType = "OneDrive",
+                 spSite = "/hj",
+                 spSiteType = "SharePoint",
             },
 
             new clsServer()
@@ -50,7 +58,6 @@ namespace FileshareToOneDrive
                  spSiteType = "SharePoint",
             },
 
-            /*
             new clsServer()
             {
                  serverDrev = @"\\SYNOLOGY_N\BILLEDER\",
@@ -58,18 +65,19 @@ namespace FileshareToOneDrive
                  spSite = "/billeder",
                  spSiteType = "SharePoint",
             }, 
-            */
-
-            /*
+          
             new clsServer()
             {
                  serverDrev = @"\\SYNOLOGY_N\DRIFT\",
                  localDrevLetter = "V",
                  spSite = "/drift",
                  spSiteType = "SharePoint",
+                 topFoldersExclude = new List<string>()
+                 {
+                     @"ActiveBackupForOffice365"
+                 }
             },             
-            */
-            
+               
              new clsServer()
             {
                  serverDrev = @"\\SYNOLOGY_N\NOTATER\",
@@ -108,11 +116,58 @@ namespace FileshareToOneDrive
 
             clsServer recServer = null;
 
-            if (false)
+            if (true)
             {
                 clsReadDrive objReadDrive = new clsReadDrive();
-                objReadDrive.load("Folder");
-                objReadDrive.load("File");
+                /*
+                //recServer = m_servers.Where(s => s.spSite == "/hn").First();
+                //objReadDrive.load("Folder", recServer);
+                //objReadDrive.load("File", recServer);
+
+                recServer = m_servers.Where(s => s.spSite == "/hj").First();
+                objReadDrive.load("Folder", recServer);
+                objReadDrive.load("File", recServer);
+
+                recServer = m_servers.Where(s => s.spSite == "/cm").First();
+                objReadDrive.load("Folder", recServer);
+                objReadDrive.load("File", recServer);
+
+                recServer = m_servers.Where(s => s.spSite == "/mr").First();
+                objReadDrive.load("Folder", recServer);
+                objReadDrive.load("File", recServer);
+
+                recServer = m_servers.Where(s => s.spSite == "/holding").First();
+                objReadDrive.load("Folder", recServer);
+                objReadDrive.load("File", recServer);
+
+                recServer = m_servers.Where(s => s.spSite == "/regnskab").First();
+                objReadDrive.load("Folder", recServer);
+                objReadDrive.load("File", recServer);
+                
+                //recServer = m_servers.Where(s => s.spSite == "/billeder").First();
+                //objReadDrive.load("Folder", recServer);
+                //objReadDrive.load("File", recServer);
+                
+                recServer = m_servers.Where(s => s.spSite == "/drift").First();
+                objReadDrive.load("Folder", recServer);
+                objReadDrive.load("File", recServer);
+
+                recServer = m_servers.Where(s => s.spSite == "/notater").First();
+                objReadDrive.load("Folder", recServer);
+                objReadDrive.load("File", recServer);
+
+                recServer = m_servers.Where(s => s.spSite == "/intranet").First();
+                objReadDrive.load("Folder", recServer);
+                objReadDrive.load("File", recServer);
+
+                recServer = m_servers.Where(s => s.spSite == "/skabeloner").First();
+                objReadDrive.load("Folder", recServer);
+                objReadDrive.load("File", recServer);
+
+                recServer = m_servers.Where(s => s.spSite == "/klient").First();
+                objReadDrive.load("Folder", recServer);
+                objReadDrive.load("File", recServer);
+                */
             }
 
             if (true)
@@ -120,13 +175,55 @@ namespace FileshareToOneDrive
                 clsContent.init();
                 clsProd03 objProd03 = new clsProd03();
 
+                /*
+                //recServer = m_servers.Where(s => s.spSite == "/hn").First();
+                //objProd03.CreateFoldersAsync(recServer).Wait();
+                //objProd03.CreateFilesAsync(recServer).Wait();
+
+                recServer = m_servers.Where(s => s.spSite == "/hj").First();
+                objProd03.CreateFoldersAsync(recServer).Wait();
+                objProd03.CreateFilesAsync(recServer).Wait();
+
+                recServer = m_servers.Where(s => s.spSite == "/cm").First();
+                objProd03.CreateFoldersAsync(recServer).Wait();
+                objProd03.CreateFilesAsync(recServer).Wait();
+
+                recServer = m_servers.Where(s => s.spSite == "/mr").First();
+                objProd03.CreateFoldersAsync(recServer).Wait();
+                objProd03.CreateFilesAsync(recServer).Wait();
+
+                recServer = m_servers.Where(s => s.spSite == "/holding").First();
+                objProd03.CreateFoldersAsync(recServer).Wait();
+                objProd03.CreateFilesAsync(recServer).Wait();
+
+                recServer = m_servers.Where(s => s.spSite == "/regnskab").First();
+                objProd03.CreateFoldersAsync(recServer).Wait();
+                objProd03.CreateFilesAsync(recServer).Wait();
+               
+                //recServer = m_servers.Where(s => s.spSite == "/billeder").First();
+                //objProd03.CreateFoldersAsync(recServer).Wait();
+                //objProd03.CreateFilesAsync(recServer).Wait();
+                
+                recServer = m_servers.Where(s => s.spSite == "/drift").First();
+                objProd03.CreateFoldersAsync(recServer).Wait();
+                objProd03.CreateFilesAsync(recServer).Wait();
+
                 recServer = m_servers.Where(s => s.spSite == "/notater").First();
+                objProd03.CreateFoldersAsync(recServer).Wait();
+                objProd03.CreateFilesAsync(recServer).Wait();
+
+                recServer = m_servers.Where(s => s.spSite == "/intranet").First();
+                objProd03.CreateFoldersAsync(recServer).Wait();
+                objProd03.CreateFilesAsync(recServer).Wait();
+
+                recServer = m_servers.Where(s => s.spSite == "/skabeloner").First();
                 objProd03.CreateFoldersAsync(recServer).Wait();
                 objProd03.CreateFilesAsync(recServer).Wait();
 
                 recServer = m_servers.Where(s => s.spSite == "/klient").First();
                 objProd03.CreateFoldersAsync(recServer).Wait();
                 objProd03.CreateFilesAsync(recServer).Wait();
+                */ 
             }
         }
     }
