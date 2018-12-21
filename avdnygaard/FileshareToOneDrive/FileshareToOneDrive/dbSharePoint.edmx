@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dbSharePointModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblPath">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serverDrev" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="serverPath" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="spSite" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="spPath" Type="nvarchar" MaxLength="350" />
+          <Property Name="spPathRenamed" Type="bit" />
+          <Property Name="spPathExists" Type="bit" />
+          <Property Name="error" Type="nvarchar" MaxLength="512" />
+          <Property Name="build" Type="bit" />
+          <Property Name="localDrevLetter" Type="varchar" MaxLength="1" />
+          <Property Name="spSiteType" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="serverPathType" Type="nvarchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="dbSharePointModelStoreContainer">
+          <EntitySet Name="tblPath" EntityType="Self.tblPath" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbSharePointModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblPath">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serverDrev" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="serverPath" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="spSite" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="spPath" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="spPathRenamed" Type="Boolean" />
+          <Property Name="spPathExists" Type="Boolean" />
+          <Property Name="error" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="build" Type="Boolean" />
+          <Property Name="localDrevLetter" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="spSiteType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="serverPathType" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="dbSharePointEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblPath" EntityType="Self.tblPath" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbSharePointModelStoreContainer" CdmEntityContainer="dbSharePointEntities">
+          <EntitySetMapping Name="tblPath">
+            <EntityTypeMapping TypeName="dbSharePointModel.tblPath">
+              <MappingFragment StoreEntitySet="tblPath">
+                <ScalarProperty Name="serverPathType" ColumnName="serverPathType" />
+                <ScalarProperty Name="spSiteType" ColumnName="spSiteType" />
+                <ScalarProperty Name="localDrevLetter" ColumnName="localDrevLetter" />
+                <ScalarProperty Name="build" ColumnName="build" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="serverDrev" ColumnName="serverDrev" />
+                <ScalarProperty Name="serverPath" ColumnName="serverPath" />
+                <ScalarProperty Name="spSite" ColumnName="spSite" />
+                <ScalarProperty Name="spPath" ColumnName="spPath" />
+                <ScalarProperty Name="spPathRenamed" ColumnName="spPathRenamed" />
+                <ScalarProperty Name="spPathExists" ColumnName="spPathExists" />
+                <ScalarProperty Name="error" ColumnName="error" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
