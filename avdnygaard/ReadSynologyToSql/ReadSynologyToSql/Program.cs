@@ -11,8 +11,9 @@ namespace ReadSynologyToSql
         static void Main(string[] args)
         {
             clsReadDrive objReadDrive = new clsReadDrive();
-            objReadDrive.load("Folder");
-            objReadDrive.load("File");
+            //objReadDrive.load("Folder");
+            //objReadDrive.load("File");
+            objReadDrive.DviveSize();
         }
     }
 }
