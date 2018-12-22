@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,26 +14,34 @@ namespace ReadSynologyToSql
         {
             new clsServer()
             {
+                 serverDrev = @"\\SYNOLOGY_N\HN\",
+                 localDrevLetter = "O",
+                 spSite = "/hn",
+                 spSiteType = "SharePoint",
+            },
+
+            new clsServer()
+            {
                  serverDrev = @"\\SYNOLOGY_N\CM\",
                  localDrevLetter = "P",
-                 spSite = "cm@adv-nygaard.dk",
-                 spSiteType = "OneDrive",
+                 spSite = "/cm",
+                 spSiteType = "SharePoint",
             },
             
             new clsServer()
             {
                  serverDrev = @"\\SYNOLOGY_N\MR\",
                  localDrevLetter = "Q",
-                 spSite = "mr@adv-nygaard.dk",
-                 spSiteType = "OneDrive",
+                 spSite = "/mr",
+                 spSiteType = "SharePoint",
             },
             
             new clsServer()
             {
                  serverDrev = @"\\SYNOLOGY_N\HJ\",
                  localDrevLetter = "R",
-                 spSite = "hj@adv-nygaard.dk",
-                 spSiteType = "OneDrive",
+                 spSite = "/hj",
+                 spSiteType = "SharePoint",
             },
             
             new clsServer()
@@ -51,7 +60,7 @@ namespace ReadSynologyToSql
                  spSiteType = "SharePoint",
             },
 
-            /*
+            
             new clsServer()
             {
                  serverDrev = @"\\SYNOLOGY_N\BILLEDER\",
@@ -59,7 +68,7 @@ namespace ReadSynologyToSql
                  spSite = "/billeder",
                  spSiteType = "SharePoint",
             }, 
-            */
+            
 
             /*
             new clsServer()
@@ -175,6 +184,29 @@ namespace ReadSynologyToSql
 
         }
 
+        public void DviveSize()
+        {
+            var s = m_servers.Where(x => x.spSite == "/billeder").First();
+            var files = System.IO.Directory.GetFiles(s.localDrevLetter + @":\", "*", System.IO.SearchOption.AllDirectories);
+            Int64 driveSize = 0;
+            var i = 0;
+            var j = 0;
+            var imax = files.Length;
+            foreach (var f in files)
+            {
+                i++;
+                j++;
+
+                if (j > 999) 
+                {
+                    Console.WriteLine(string.Format("{0}/{1}  {2} GB", i ,imax, driveSize / (1024 * 1024 * 1024)));
+                    j = 0;
+                }
+                driveSize += new FileInfo(f).Length;
+            }
+            var driveSizeGB = driveSize / (1024 * 1024 * 1024);
+            Console.WriteLine(string.Format("{0} files {1} GB", imax, driveSizeGB));
+        }
     }
 
     public class clsServer
