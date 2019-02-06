@@ -47,6 +47,7 @@
             this.exportDanskeErhvervToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportMobilePayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.posterTilRegnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.medlemsListeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sysInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kontingentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,7 +66,6 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolExportMobilePay = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.medlemsListeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -145,19 +145,19 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(102, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Visible = false;
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
@@ -174,14 +174,14 @@
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem3.Text = "PBS Filer";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.pbsFilertoolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // uniContaToolStripMenuItem
             // 
@@ -222,6 +222,13 @@
             this.posterTilRegnskabToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.posterTilRegnskabToolStripMenuItem.Text = "Poster til Regnskab";
             this.posterTilRegnskabToolStripMenuItem.Click += new System.EventHandler(this.posterTilRegnskabToolStripMenuItem_Click);
+            // 
+            // medlemsListeToolStripMenuItem
+            // 
+            this.medlemsListeToolStripMenuItem.Name = "medlemsListeToolStripMenuItem";
+            this.medlemsListeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.medlemsListeToolStripMenuItem.Text = "Medlems Liste";
+            this.medlemsListeToolStripMenuItem.Click += new System.EventHandler(this.medlemsListeToolStripMenuItem_Click);
             // 
             // systemToolStripMenuItem
             // 
@@ -368,13 +375,6 @@
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
-            // 
-            // medlemsListeToolStripMenuItem
-            // 
-            this.medlemsListeToolStripMenuItem.Name = "medlemsListeToolStripMenuItem";
-            this.medlemsListeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.medlemsListeToolStripMenuItem.Text = "Medlems Liste";
-            this.medlemsListeToolStripMenuItem.Click += new System.EventHandler(this.medlemsListeToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
