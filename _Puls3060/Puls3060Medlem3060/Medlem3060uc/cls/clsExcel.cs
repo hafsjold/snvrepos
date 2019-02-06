@@ -53,7 +53,7 @@ namespace Medlem3060uc
             _Excel.Window oWindow;
             _Excel.Range oRng;
 
-            string rec_regnskab_Eksportmappe = @"%userprofile%\Documents\SummaSummarum"; // work
+            string rec_regnskab_Eksportmappe = @"%userprofile%\OneDrive\Documents\SummaSummarum"; // work
             rec_regnskab_Eksportmappe = Environment.ExpandEnvironmentVariables(rec_regnskab_Eksportmappe);
             string SaveAs = rec_regnskab_Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
 
@@ -207,7 +207,7 @@ namespace Medlem3060uc
             _Excel.Window oWindow;
             _Excel.Range oRng;
 
-            string rec_regnskab_Eksportmappe = @"%userprofile%\Documents\SummaSummarum"; // work
+            string rec_regnskab_Eksportmappe = @"%userprofile%\OneDrive\Documents\SummaSummarum"; // work
             rec_regnskab_Eksportmappe = Environment.ExpandEnvironmentVariables(rec_regnskab_Eksportmappe);
             string SaveAs = rec_regnskab_Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
 
@@ -587,7 +587,7 @@ namespace Medlem3060uc
             _Excel.Window oWindow;
             _Excel.Range oRng;
 
-            string rec_regnskab_Eksportmappe = @"%userprofile%\Documents\SummaSummarum\"; // work
+            string rec_regnskab_Eksportmappe = @"%userprofile%\OneDrive\Documents\SummaSummarum\"; // work
             rec_regnskab_Eksportmappe = Environment.ExpandEnvironmentVariables(rec_regnskab_Eksportmappe);
             string SaveAs = rec_regnskab_Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
 
