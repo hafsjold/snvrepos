@@ -36,6 +36,14 @@ namespace nsPbs3060
 
         public int ImportEmailBilag()
         {
+            int totalAntal = 0;
+            totalAntal += _ImportEmailBilag();
+            totalAntal += _ImportEmailTilBetaling();
+            return totalAntal;
+        }
+
+        public int _ImportEmailBilag()
+        {
             MimeMessage message;
             int antalbilag = 0;
             clsParam objParam = null;
@@ -212,10 +220,10 @@ namespace nsPbs3060
                         {
                             objParam = new clsParam()
                             {
-                                 Delsystem = "Kreditor",
+                                 Delsystem = "Finans",
                                  Tekst = "Ukendt post",
-                                 Kontotype = "Kreditor",
-                                 Konto = "100000",
+                                 Kontotype = "Finans",
+                                 Konto = "9900",
                                  Modkontotype = "Finans",
                                  Modkonto = "9900",
                                  Kredit = 0.00
@@ -243,6 +251,219 @@ namespace nsPbs3060
                 }
 
                 Puls3060Bilag.Close();
+                imap_client.Disconnect(true);
+            }
+            return antalbilag;// message;
+        }
+        public int _ImportEmailTilBetaling()
+        {
+            MimeMessage message;
+            int antalbilag = 0;
+            clsParam objParam = null;
+            using (var imap_client = new ImapClient())
+            {
+                imap_client.Connect("imap.gigahost.dk", 993, true);
+                imap_client.AuthenticationMechanisms.Remove("XOAUTH");
+                imap_client.Authenticate(clsApp.GigaHostImapUser, clsApp.GigaHostImapPW);
+                var Puls3060TilBetaling = imap_client.GetFolder("_Puls3060TilBetaling");
+                var Puls3060BilagArkiv = imap_client.GetFolder("_Puls3060BilagArkiv");
+                Puls3060TilBetaling.Open(FolderAccess.ReadWrite);
+
+                var results = Puls3060TilBetaling.Search(SearchQuery.All);
+                antalbilag = results.Count();
+                foreach (var result in results)
+                {
+                    message = Puls3060TilBetaling.GetMessage(result);
+                    List<VouchersClient> documentlist = new List<VouchersClient>();
+
+                    if (message.Body.ContentType.MimeType == "application/ms-tnef")
+                    {
+                        antalbilag--;
+                        continue;
+
+                        foreach (var msg_attachment in message.Attachments)
+                        {
+                            var part = (TnefPart)msg_attachment;
+                            //FileStream msstream = new FileStream(@"testfile.pdf", FileMode.CreateNew);
+                            MemoryStream msstream = new MemoryStream();
+                            part.ContentObject.DecodeTo(msstream);
+                            msstream.Position = 0;
+                            var parser = new MimeParser(msstream, MimeFormat.Default);
+                            var xmessage = parser.ParseMessage();
+
+                        }
+                    }
+                    MemoryStream msMail = new MemoryStream();
+                    message.WriteTo(msMail);
+
+                    VouchersClient mail = new VouchersClient()
+                    {
+                        Fileextension = FileextensionsTypes.EML,
+                        Text = "e-Mail",
+                        VoucherAttachment = msMail.ToArray(),
+                        DocumentDate = DateTime.Now,
+                    };
+                    var task1 = m_api.Insert(mail);
+                    task1.Wait();
+                    var res1 = task1.Result;
+                    documentlist.Add(mail);
+
+
+                    foreach (var msg_attachment in message.Attachments)
+                    {
+                        if (msg_attachment is MimePart)
+                        {
+
+                            FileextensionsTypes type = FileextensionsTypes.PDF;
+                            switch (msg_attachment.ContentType.MediaSubtype.ToUpper())
+                            {
+                                case "PDF":
+                                    type = FileextensionsTypes.PDF;
+                                    break;
+
+                                case "JPEG":
+                                    type = FileextensionsTypes.JPEG;
+                                    break;
+
+                                case "TXT":
+                                    type = FileextensionsTypes.TXT;
+                                    break;
+
+                                case "PLAIN":
+                                    type = FileextensionsTypes.TXT;
+                                    break;
+
+                                case "MSWORD":
+                                    type = FileextensionsTypes.DOC;
+                                    break;
+
+                                case "VND.OPENXMLFORMATS-OFFICEDOCUMENT.SPREADSHEETML.SHEET":
+                                    type = FileextensionsTypes.XLSX;
+                                    break;
+
+                                default:
+                                    type = FileextensionsTypes.UNK;
+                                    break;
+                            }
+                            var part = (MimePart)msg_attachment;
+                            MemoryStream msstream = new MemoryStream();
+                            part.ContentObject.DecodeTo(msstream);
+                            byte[] arrStream = msstream.ToArray();
+                            if (type == FileextensionsTypes.UNK)
+                            {
+                                if (arrStream[0] == 0x25 && arrStream[1] == 0x50 && arrStream[2] == 0x44 && arrStream[3] == 0x46) // PDF Magic number
+                                {
+                                    type = FileextensionsTypes.PDF;
+                                }
+                            }
+                            VouchersClient attm = new VouchersClient()
+                            {
+                                Fileextension = type,
+                                Text = (msg_attachment as MimePart).FileName,
+                                VoucherAttachment = arrStream,
+                                DocumentDate = DateTime.Now,
+                            };
+                            var task3 = m_api.Insert(attm);
+                            task3.Wait();
+                            var res3 = task3.Result;
+                            documentlist.Add(attm);
+                        }
+
+                        else if (msg_attachment is MessagePart)
+                        {
+                            string wmsgtext;
+                            var msgpart = msg_attachment as MessagePart;
+                            if (string.IsNullOrEmpty(msgpart.Message.HtmlBody))
+                            {
+                                wmsgtext = msgpart.Message.TextBody;
+                            }
+                            else
+                            {
+                                wmsgtext = msgpart.Message.HtmlBody;
+                            }
+                            var msgtext = Regex.Replace(wmsgtext, "<[^>]*>", String.Empty).Replace("&nbsp;", String.Empty).Trim();
+                            string[] splitstring = { "\r\n" };
+                            string[] arrParams = msgtext.Split(splitstring, StringSplitOptions.RemoveEmptyEntries);
+                            objParam = new clsParam(arrParams);
+                        }
+                    }
+                    if (documentlist.Count > 0)
+                    {
+
+                        VouchersClient folder = new VouchersClient()
+                        {
+                            _Fileextension = FileextensionsTypes.DIR,
+                            _Text = message.Subject,
+                            _DocumentDate = DateTime.Now,
+
+                        };
+                        var ref3 = folder.PrimaryKeyId;
+                        var task4 = m_api.Insert(folder);
+                        task4.Wait();
+                        var res4 = task4.Result;
+                        var ref1 = folder.PrimaryKeyId;
+
+                        DocumentAPI docapi = new DocumentAPI(m_api);
+                        //TEST
+                        //var task5 = docapi.CreateFolder(folder, null);
+                        //var task5 = docapi.AppendToFolder(folder, documentlist);
+                        var task5 = docapi.CreateFolder(folder, documentlist);
+                        task5.Wait();
+                        var res5 = task5.Result;
+                        var ref2 = folder.PrimaryKeyId;
+
+                        int DocumentRef = ref2;
+
+                        if (ref1 != ref2) //Delete ref1
+                        {
+                            var crit = new List<PropValuePair>();
+                            var pair = PropValuePair.GenereteWhereElements("PrimaryKeyId", typeof(int), ref1.ToString());
+                            crit.Add(pair);
+                            var task6 = m_api.Query<VouchersClient>(crit);
+                            task6.Wait();
+                            var col = task6.Result;
+                            if (col.Count() == 1)
+                            {
+                                var rec = col[0];
+                                m_api.DeleteNoResponse(rec);
+                            }
+                        }
+
+                        if (objParam == null)
+                        {
+                            objParam = new clsParam()
+                            {
+                                Delsystem = "Kreditor",
+                                Tekst = "Ukendt post",
+                                Kontotype = "Kreditor",
+                                Konto = "100000",
+                                Modkontotype = "Finans",
+                                Modkonto = "9900",
+                                Kredit = 0.00
+                            };
+                        }
+
+                        switch (objParam.Delsystem.ToLower())
+                        {
+                            case "finans":
+                                InsertFinansJournal(message, DocumentRef, objParam);
+                                break;
+
+                            case "kreditor":
+                                InsertKøbsOrder(message, DocumentRef, objParam);
+                                break;
+
+                            default:
+                                break;
+                        }
+
+                        // move email to arkiv
+                        var newId = Puls3060TilBetaling.MoveTo(result, Puls3060BilagArkiv);
+                    }
+
+                }
+
+                Puls3060TilBetaling.Close();
                 imap_client.Disconnect(true);
             }
             return antalbilag;// message;
