@@ -57,7 +57,8 @@ namespace Pbs3060
                                   delsystem = d.Data.Substring(13, 3),
                               };
 
-            foreach (var rstpbsfiles in qrypbsfiles)
+
+            foreach (var rstpbsfiles in qrypbsfiles.ToList())
             {
                 try
                 {
@@ -72,7 +73,7 @@ namespace Pbs3060
                                      orderby d.Seqnr
                                      select d;
 
-                    foreach (var rstpbsfile in qrypbsfile)
+                    foreach (var rstpbsfile in qrypbsfile.ToList())
                     {
                         rec = rstpbsfile.Data;
                         // -- Bestem Leverance Type
@@ -278,7 +279,15 @@ namespace Pbs3060
                     }
                 }
             }  // slut rstpbsfiles
-            p_dbData3060.SaveChanges();
+            try
+            {
+                p_dbData3060.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("clsPbs602 p_dbData3060.SaveChanges() failed with message: {0}", e.Message));
+                AntalFiler = 0;
+            }
             return AntalFiler;
         }
 
@@ -559,12 +568,24 @@ namespace Pbs3060
                     Bogforingsdato = m_rec_betlin.Bogforingsdato
                 };
                 m_rec_frapbs.Tblbet.Add(m_rec_bet);
+
             }
 
             // Add tblbetlin
             Tblbetlin w_rec_betlin = Update_Nr_Faknr(m_rec_betlin, p_dbData3060);
 
             m_rec_bet.Tblbetlin.Add(w_rec_betlin);
+
+            try
+            {
+                p_dbData3060.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("clsPbs602 read042 p_dbData3060.SaveChanges() failed with message: {0}", e.Message));
+            }
+
+
         }
 
         public Tblbetlin Update_Nr_Faknr(Tblbetlin m_rec_betlin, dbData3060DataContext p_dbData3060)

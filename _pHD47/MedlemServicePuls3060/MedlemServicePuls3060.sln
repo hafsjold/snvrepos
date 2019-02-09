@@ -10,6 +10,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestPbs3060", "TestPbs3060\TestPbs3060.csproj", "{1963CBFA-5A86-4362-92C6-BE57743B4ADD}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{FE8D1775-C614-4230-A776-5E10AEC89F76}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A1609708-AEFA-4CEF-B454-23EB5345B5A9} = {A1609708-AEFA-4CEF-B454-23EB5345B5A9}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
