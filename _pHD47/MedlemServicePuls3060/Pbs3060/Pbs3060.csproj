@@ -5,14 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MailKit" Version="2.0.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.1" />
-    <PackageReference Include="MimeKit" Version="2.0.5" />
-    <PackageReference Include="NLog" Version="4.5.7" />
-    <PackageReference Include="NLog.Config" Version="4.5.7" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.1" />
+    <PackageReference Include="MailKit" Version="2.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.1" />
+    <PackageReference Include="MimeKit" Version="2.1.2" />
+    <PackageReference Include="NLog" Version="4.5.11" />
+    <PackageReference Include="NLog.Config" Version="4.5.11" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" />
     <PackageReference Include="SSH.NET" Version="2016.1.0" />
-    <PackageReference Include="Uniconta.NetCoreAPI" Version="1.0.75" />
+    <PackageReference Include="Uniconta.NetCoreAPI" Version="1.0.79" />
   </ItemGroup>
 
 </Project>

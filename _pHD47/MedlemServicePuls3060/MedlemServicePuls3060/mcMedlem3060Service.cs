@@ -93,14 +93,14 @@ namespace MedlemServicePuls3060
             //JobWorker("ImportEmailBilag", 99999);
 
 
-            JobQMaintenance();
+            JobQInitMaintenance();
             LoadSchedule();
 
             while (true)
             {
                 try
                 {
-                    Console.WriteLine(string.Format("Medlem3060Service Scheduler() loop start {0}", DateTime.Now.ToShortTimeString()));
+                    Console.WriteLine(string.Format("Medlem3060Service Scheduler() loop start {0} UTC", DateTime.Now.ToUniversalTime()));
                     Log.Log(LogLevel.Info, "Medlem3060Service Scheduler() loop start");
 
                     int? id = null;
@@ -150,7 +150,7 @@ namespace MedlemServicePuls3060
 
                             clsPbs602 objPbs602 = new clsPbs602();
                             int Antal602Filer = objPbs602.betalinger_fra_pbs(m_dbData3060);
-                            if (Antal602Filer > 0)
+                            //if (Antal602Filer > 0)  // <<----------------------------
                             {
                                 Console.WriteLine(string.Format("Medlem3060Service {0} begin", "Betalinger til RSMembership"));
                                 objPbs602.betalinger_opdate_uniconta(m_dbData3060, api);
@@ -409,6 +409,14 @@ namespace MedlemServicePuls3060
             using (dbJobQEntities db = new dbJobQEntities())
             {
                 int count = db.Database.ExecuteSqlCommand(@"DELETE FROM dbo.tblJobqueue WHERE starttime < DATEADD(HOUR,-12,GETDATE())");
+            }
+        }
+
+        private void JobQInitMaintenance()
+        {
+            using (dbJobQEntities db = new dbJobQEntities())
+            {
+                int count = db.Database.ExecuteSqlCommand(@"DELETE FROM dbo.tblJobqueue");
             }
         }
 
