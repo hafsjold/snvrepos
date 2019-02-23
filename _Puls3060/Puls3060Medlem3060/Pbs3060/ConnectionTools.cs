@@ -1,33 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Configuration;
 using System.Data.Entity;
-using System.Data.EntityClient;
+using System.Data.Entity.Core.EntityClient;
 using System.Data.SqlClient;
 
 namespace nsPbs3060
 {
-    public partial class puls3060_nyEntities : DbContext
-    {
-        public puls3060_nyEntities(bool bChangeDatabase)
-            : base("name=puls3060_nyEntities")
-        {
-            if (bChangeDatabase)
-            {
-                this.ChangeDatabase
-                  (
-                      initialCatalog: "puls3060_dk",
-                      userId: clsApp.puls3060_dkUser,
-                      password: clsApp.puls3060_dkPW,
-                      integratedSecuity: false,
-                      dataSource: @"mysql3.gigahost.dk"
-                  );
-            }
-        }
-    }
-
     public static class ConnectionTools
     {
         // all params are optional
@@ -77,7 +55,7 @@ namespace nsPbs3060
                 source.Database.Connection.ConnectionString
                     = sqlCnxStringBuilder.ConnectionString + ";ConvertZeroDateTime=True";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // set log item if required
             }

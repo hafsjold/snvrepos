@@ -97,42 +97,33 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.4.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.4\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="MailKit, Version=1.16.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
-      <HintPath>..\packages\MailKit.1.16.1\lib\net40\MailKit.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Data.Edm, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.Data.Edm.5.6.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    <Reference Include="MailKit, Version=2.1.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.2.1.2\lib\net45\MailKit.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Data.OData, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.Data.OData.5.6.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    <Reference Include="Microsoft.Data.Edm, Version=5.8.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.8.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    <Reference Include="Microsoft.Data.OData, Version=5.8.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.8.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.8.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.8.4\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Microsoft.WindowsAzure.Configuration">
-      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    <Reference Include="MimeKit, Version=2.1.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.2.1.2\lib\net45\MimeKit.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Storage">
-      <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
-    </Reference>
-    <Reference Include="MimeKit, Version=1.16.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
-      <HintPath>..\packages\MimeKit.1.16.1\lib\net40\MimeKit.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
       <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
@@ -143,17 +134,16 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Spatial, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\System.Spatial.5.6.2\lib\net40\System.Spatial.dll</HintPath>
+    <Reference Include="System.Spatial, Version=5.8.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.8.4\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
@@ -164,30 +154,18 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Uniconta.Common, Version=1.0.6777.12378, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Uniconta.Common.1.1.75\lib\portable40-net40+win8\Uniconta.Common.dll</HintPath>
+    <Reference Include="Uniconta.Common, Version=1.0.6952.18552, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Uniconta.Common.1.1.79\lib\portable40-net40+win8\Uniconta.Common.dll</HintPath>
     </Reference>
     <Reference Include="Uniconta.WindowsAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.75\lib\net45\Uniconta.WindowsAPI.dll</HintPath>
+      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.79.1\lib\net45\Uniconta.WindowsAPI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsApp.cs" />
-    <Compile Include="clsAppData.cs" />
-    <Compile Include="clsAzure.cs" />
     <Compile Include="clsHelper.cs" />
-    <Compile Include="clsInfotekst.cs" />
     <Compile Include="clsKontingent.cs" />
     <Compile Include="clsParam.cs" />
-    <Compile Include="clsPayPal.cs" />
-    <Compile Include="clsPbs601.cs" />
-    <Compile Include="clsPbs602.cs" />
-    <Compile Include="clsPbs603.cs" />
-    <Compile Include="clsPbsHelper.cs" />
-    <Compile Include="clsPipeData.cs" />
-    <Compile Include="clsRSMembership2UniConta.cs" />
-    <Compile Include="clsSFTP.cs" />
-    <Compile Include="clsPbs686.cs" />
     <Compile Include="clsStatus.cs" />
     <Compile Include="clsStatusData.cs" />
     <Compile Include="clsUniconta.cs" />
@@ -205,71 +183,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbData3060.dbml</DependentUpon>
     </Compile>
-    <Compile Include="ecpwt_rsmembership_memberships.cs">
-      <DependentUpon>puls3060_ny.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ecpwt_rsmembership_membership_subscribers.cs">
-      <DependentUpon>puls3060_ny.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ecpwt_rsmembership_subscribers.cs">
-      <DependentUpon>puls3060_ny.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ecpwt_rsmembership_transactions.cs">
-      <DependentUpon>puls3060_ny.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ecpwt_rsmembership_transactions_user_data.cs">
-      <DependentUpon>puls3060_ny.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ecpwt_usergroups.cs">
-      <DependentUpon>puls3060_ny.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ecpwt_users.cs">
-      <DependentUpon>puls3060_ny.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ecpwt_user_usergroup_map.cs">
-      <DependentUpon>puls3060_ny.tt</DependentUpon>
-    </Compile>
     <Compile Include="karBankkontoudtogDanskebank.cs" />
     <Compile Include="karMobilepay.cs" />
-    <Compile Include="karPaypal.cs" />
     <Compile Include="memBogfoeringsKlader.cs" />
-    <Compile Include="memPbsnetdir.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="puls3060_ny.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>puls3060_ny.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="puls3060_ny.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>puls3060_ny.tt</DependentUpon>
-    </Compile>
-    <Compile Include="puls3060_ny.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>puls3060_ny.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\PayPalServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="tblmembershippayment.cs">
-      <DependentUpon>puls3060_ny.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblpaypalpayment.cs">
-      <DependentUpon>puls3060_ny.tt</DependentUpon>
     </Compile>
     <Compile Include="UCInitializer.cs" />
   </ItemGroup>
@@ -280,201 +206,10 @@
       <LastGenOutput>dbData3060.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="puls3060_ny.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>puls3060_ny.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="puls3060_ny.edmx.diagram">
-      <DependentUpon>puls3060_ny.edmx</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\CoreComponentTypes.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\PayPalServiceReference\eBLBaseComponents.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\PayPalServiceReference\EnhancedDataTypes.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.AddressVerifyResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.BAUpdateResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.BillOutstandingAmountResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.BillUserResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.BMButtonSearchResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.BMCreateButtonResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.BMGetButtonDetailsResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.BMGetInventoryResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.BMManageButtonStatusResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.BMSetInventoryResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.BMUpdateButtonResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.CancelRecoupResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.CompleteRecoupResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.CreateBillingAgreementResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.CreateMobilePaymentResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.CreateRecurringPaymentsProfileResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.CustomSecurityHeaderType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.DoAuthorizationResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.DoCancelResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.DoCaptureResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.DoDirectPaymentResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.DoExpressCheckoutPaymentResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.DoMobileCheckoutPaymentResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.DoNonReferencedCreditResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.DoReauthorizationResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.DoReferenceTransactionResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.DoUATPAuthorizationResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.DoUATPExpressCheckoutPaymentResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.DoVoidResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.EnterBoardingResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.ExecuteCheckoutOperationsResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.ExternalRememberMeOptOutResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.GetAccessPermissionDetailsResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.GetAuthDetailsResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.GetBalanceResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.GetBillingAgreementCustomerDetailsResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.GetBoardingDetailsResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.GetExpressCheckoutDetailsResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.GetIncentiveEvaluationResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.GetMobileStatusResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.GetPalDetailsResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.GetRecurringPaymentsProfileDetailsResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.GetTransactionDetailsResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.InitiateRecoupResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.ManagePendingTransactionStatusResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.ManageRecurringPaymentsProfileStatusResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.MassPayResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.RefundTransactionResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.ReverseTransactionResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.SetAccessPermissionsResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.SetAuthFlowParamResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.SetCustomerBillingAgreementResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.SetExpressCheckoutResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.SetMobileCheckoutResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.TransactionSearchResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.UpdateAccessPermissionsResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.UpdateAuthorizationResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\nsPbs3060.PayPalServiceReference.UpdateRecurringPaymentsProfileResponseType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\PayPalServiceReference\PayPalSvc.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -504,28 +239,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PHPSerializationLibrary\PHPSerializationLibrary.csproj">
-      <Project>{4e7cfc61-4444-4ec8-a8f2-57d8ef21d84f}</Project>
-      <Name>PHPSerializationLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\PayPalServiceReference\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\PayPalServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\PayPalServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\PayPalServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resource1.resx">
@@ -535,16 +249,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DC\API\OIOUBL\Classes to export\Resources\OIOUBL_Invoice_Schematron.xsl" />
-    <Content Include="puls3060_ny.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>puls3060_ny.edmx</DependentUpon>
-      <LastGenOutput>puls3060_ny.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="puls3060_ny.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>puls3060_ny.edmx</DependentUpon>
-      <LastGenOutput>puls3060_ny.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

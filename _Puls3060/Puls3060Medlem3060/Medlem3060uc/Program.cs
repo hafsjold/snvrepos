@@ -9,8 +9,6 @@ using System.Text;
 using nsPbs3060;
 using System.Diagnostics;
 
-
-
 namespace Medlem3060uc
 {
     static class Program
@@ -22,13 +20,7 @@ namespace Medlem3060uc
             {
                 if (m_ConnectStringWithoutPassword == null)
                 {
-#if (DEBUG)
                     m_ConnectStringWithoutPassword = global::Medlem3060uc.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod;
-                    //m_ConnectStringWithoutPassword = global::Medlem3060uc.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test;
-                    //m_ConnectStringWithoutPassword = global::Medlem3060uc.Properties.Settings.Default.test_dbConnectionString_Test;
-#else
-                    m_ConnectStringWithoutPassword = global::Medlem3060uc.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod;
-#endif
                 }
                 return m_ConnectStringWithoutPassword;
             }
@@ -63,21 +55,8 @@ namespace Medlem3060uc
         }
 
         private static string m_ConnectStringWithoutPassword;
-        private static MemPbsnetdir m_memPbsnetdir;
         private static KarKladde m_KarKladde;
 
-        public static MemPbsnetdir memPbsnetdir
-        {
-            get
-            {
-                if (m_memPbsnetdir == null) m_memPbsnetdir = new MemPbsnetdir();
-                return m_memPbsnetdir;
-            }
-            set
-            {
-                m_memPbsnetdir = value;
-            }
-        }
 
         public static KarKladde karKladde
         {
