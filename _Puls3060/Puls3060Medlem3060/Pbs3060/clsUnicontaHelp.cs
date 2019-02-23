@@ -67,18 +67,6 @@ namespace nsPbs3060
                     {
                         antalbilag--;
                         continue;
-
-                        foreach (var msg_attachment in message.Attachments)
-                        {
-                            var part = (TnefPart)msg_attachment;
-                            //FileStream msstream = new FileStream(@"testfile.pdf", FileMode.CreateNew);
-                            MemoryStream msstream = new MemoryStream();
-                            part.ContentObject.DecodeTo(msstream);
-                            msstream.Position = 0;
-                            var parser = new MimeParser(msstream, MimeFormat.Default);
-                            var xmessage = parser.ParseMessage();
-
-                        }
                     }
                     MemoryStream msMail = new MemoryStream();
                     message.WriteTo(msMail);
@@ -280,18 +268,6 @@ namespace nsPbs3060
                     {
                         antalbilag--;
                         continue;
-
-                        foreach (var msg_attachment in message.Attachments)
-                        {
-                            var part = (TnefPart)msg_attachment;
-                            //FileStream msstream = new FileStream(@"testfile.pdf", FileMode.CreateNew);
-                            MemoryStream msstream = new MemoryStream();
-                            part.ContentObject.DecodeTo(msstream);
-                            msstream.Position = 0;
-                            var parser = new MimeParser(msstream, MimeFormat.Default);
-                            var xmessage = parser.ParseMessage();
-
-                        }
                     }
                     MemoryStream msMail = new MemoryStream();
                     message.WriteTo(msMail);
@@ -530,7 +506,7 @@ namespace nsPbs3060
             var err = task2.Result;
             if (err != ErrorCodes.Succes)
             {
-                int xx = 1;
+                //int xx = 1;
             }
         }
 

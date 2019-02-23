@@ -171,13 +171,6 @@
             this.pBSToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.pBSToolStripMenuItem.Text = "PBS";
             // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem3.Text = "PBS Filer";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.pbsFilertoolStripMenuItem_Click);
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -279,27 +272,6 @@
             this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.infoTekstToolStripMenuItem.Text = "Info tekst";
             this.infoTekstToolStripMenuItem.Click += new System.EventHandler(this.infoTekstToolStripMenuItem_Click);
-            // 
-            // reSendToolStripMenuItem
-            // 
-            this.reSendToolStripMenuItem.Name = "reSendToolStripMenuItem";
-            this.reSendToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.reSendToolStripMenuItem.Text = "ReSend";
-            this.reSendToolStripMenuItem.Click += new System.EventHandler(this.reSendToolStripMenuItem_Click);
-            // 
-            // opdaterAppDataToolStripMenuItem
-            // 
-            this.opdaterAppDataToolStripMenuItem.Name = "opdaterAppDataToolStripMenuItem";
-            this.opdaterAppDataToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.opdaterAppDataToolStripMenuItem.Text = "Opdater AppData";
-            this.opdaterAppDataToolStripMenuItem.Click += new System.EventHandler(this.opdaterAppDataToolStripMenuItem_Click);
-            // 
-            // testToolStripMenuItem1
-            // 
-            this.testToolStripMenuItem1.Name = "testToolStripMenuItem1";
-            this.testToolStripMenuItem1.Size = new System.Drawing.Size(166, 22);
-            this.testToolStripMenuItem1.Text = "Test";
-            this.testToolStripMenuItem1.Click += new System.EventHandler(this.testToolStripMenuItem1_Click);
             // 
             // hjælpToolStripMenuItem
             // 

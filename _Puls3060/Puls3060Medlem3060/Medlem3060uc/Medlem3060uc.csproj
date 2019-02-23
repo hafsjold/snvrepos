@@ -38,7 +38,7 @@
     <ProductName>Medlem3060uc</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>38</ApplicationRevision>
+    <ApplicationRevision>39</ApplicationRevision>
     <ApplicationVersion>8.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -123,9 +123,8 @@
     <AssemblyOriginatorKeyFile>Medlem3060_2_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.4.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.4\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -138,21 +137,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\Interop.VBIDE.dll</HintPath>
     </Reference>
-    <Reference Include="MailKit, Version=1.16.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
-      <HintPath>..\packages\MailKit.1.16.1\lib\net45\MailKit.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MailKit, Version=2.1.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.2.1.2\lib\net45\MailKit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="MimeKit, Version=1.16.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
-      <HintPath>..\packages\MimeKit.1.16.1\lib\net45\MimeKit.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MimeKit, Version=2.1.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.2.1.2\lib\net45\MimeKit.dll</HintPath>
     </Reference>
-    <Reference Include="NamedPipeWrapper, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\NamedPipeWrapper.1.5.0\lib\net40\NamedPipeWrapper.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
       <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
@@ -165,6 +159,7 @@
     <Reference Include="System.Data.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Extensions" />
@@ -179,11 +174,11 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Uniconta.Common, Version=1.0.6777.12378, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Uniconta.Common.1.1.75\lib\portable40-net40+win8\Uniconta.Common.dll</HintPath>
+    <Reference Include="Uniconta.Common, Version=1.0.6952.18552, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Uniconta.Common.1.1.79\lib\portable40-net40+win8\Uniconta.Common.dll</HintPath>
     </Reference>
     <Reference Include="Uniconta.WindowsAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.75\lib\net45\Uniconta.WindowsAPI.dll</HintPath>
+      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.79.1\lib\net45\Uniconta.WindowsAPI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -202,35 +197,11 @@
     <Compile Include="frm\frmSysInfo.Designer.cs">
       <DependentUpon>frmSysInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm\frmApp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmApp.Designer.cs">
-      <DependentUpon>frmApp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frm\frmImportPBSFile.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmImportPBSFile.Designer.cs">
-      <DependentUpon>frmImportPBSFile.cs</DependentUpon>
-    </Compile>
     <Compile Include="frm\frmKontingent.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm\frmKontingent.Designer.cs">
       <DependentUpon>frmKontingent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frm\frmResend.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmResend.Designer.cs">
-      <DependentUpon>frmResend.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frm\frmPbsnetdir.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmPbsnetdir.Designer.cs">
-      <DependentUpon>frmPbsnetdir.cs</DependentUpon>
     </Compile>
     <Compile Include="frm\frmInfotekst.cs">
       <SubType>Form</SubType>
@@ -243,12 +214,6 @@
     </Compile>
     <Compile Include="frm\frmPbsfiles.Designer.cs">
       <DependentUpon>frmPbsfiles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frm\frmKontingentForslag.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmKontingentForslag.Designer.cs">
-      <DependentUpon>frmKontingentForslag.cs</DependentUpon>
     </Compile>
     <Compile Include="frm\BetterDialog.cs">
       <SubType>Form</SubType>
@@ -271,12 +236,6 @@
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="kar\Medlem.cs" />
-    <Compile Include="pipeServer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="pipeServer.Designer.cs">
-      <DependentUpon>pipeServer.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="app.config">
@@ -285,23 +244,14 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmApp.resx">
-      <DependentUpon>frmApp.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frm\BetterDialog.resx">
       <DependentUpon>BetterDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmImportPBSFile.resx">
-      <DependentUpon>frmImportPBSFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmInfotekst.resx">
       <DependentUpon>frmInfotekst.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmKontingent.resx">
       <DependentUpon>frmKontingent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmKontingentForslag.resx">
-      <DependentUpon>frmKontingentForslag.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmKreditor.resx">
       <DependentUpon>frmKreditor.cs</DependentUpon>
@@ -312,17 +262,8 @@
     <EmbeddedResource Include="frm\frmPbsfiles.resx">
       <DependentUpon>frmPbsfiles.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmPbsnetdir.resx">
-      <DependentUpon>frmPbsnetdir.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmResend.resx">
-      <DependentUpon>frmResend.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmSysInfo.resx">
       <DependentUpon>frmSysInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="pipeServer.resx">
-      <DependentUpon>pipeServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -407,10 +348,6 @@
     <ProjectReference Include="..\Pbs3060\Pbs3060.csproj">
       <Project>{B65FF3FB-C71D-448A-9ECC-D2E96707F9E5}</Project>
       <Name>Pbs3060</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PHPSerializationLibrary\PHPSerializationLibrary.csproj">
-      <Project>{4e7cfc61-4444-4ec8-a8f2-57d8ef21d84f}</Project>
-      <Name>PHPSerializationLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
