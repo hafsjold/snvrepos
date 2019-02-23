@@ -39,9 +39,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.afslutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.uniContaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.impoerEmailBilagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportDanskeErhvervToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,10 +50,6 @@
             this.kontingentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pbsfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.infoTekstToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reSendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.opdaterAppDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -78,9 +71,9 @@
             this.toolStripStatusLabel2,
             this.MainformProgressBar,
             this.MainformProgressText});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 776);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 337);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1024, 24);
+            this.statusStrip1.Size = new System.Drawing.Size(684, 24);
             this.statusStrip1.TabIndex = 1;
             // 
             // toolStripStatusLabel1
@@ -122,13 +115,12 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.pBSToolStripMenuItem,
             this.uniContaToolStripMenuItem,
             this.systemToolStripMenuItem,
             this.hjælpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1024, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(684, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -145,36 +137,22 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(102, 6);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Visible = false;
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
-            // 
-            // pBSToolStripMenuItem
-            // 
-            this.pBSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem3,
-            this.toolStripSeparator2});
-            this.pBSToolStripMenuItem.Name = "pBSToolStripMenuItem";
-            this.pBSToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.pBSToolStripMenuItem.Text = "PBS";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // uniContaToolStripMenuItem
             // 
@@ -229,11 +207,7 @@
             this.sysInfoToolStripMenuItem,
             this.kontingentToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.pbsfilesToolStripMenuItem,
-            this.infoTekstToolStripMenuItem,
-            this.reSendToolStripMenuItem,
-            this.opdaterAppDataToolStripMenuItem,
-            this.testToolStripMenuItem1});
+            this.pbsfilesToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -241,37 +215,30 @@
             // sysInfoToolStripMenuItem
             // 
             this.sysInfoToolStripMenuItem.Name = "sysInfoToolStripMenuItem";
-            this.sysInfoToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.sysInfoToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.sysInfoToolStripMenuItem.Text = "SysInfo";
             this.sysInfoToolStripMenuItem.Click += new System.EventHandler(this.sysInfoToolStripMenuItem_Click);
             // 
             // kontingentToolStripMenuItem
             // 
             this.kontingentToolStripMenuItem.Name = "kontingentToolStripMenuItem";
-            this.kontingentToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.kontingentToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.kontingentToolStripMenuItem.Text = "Kontingent";
             this.kontingentToolStripMenuItem.Click += new System.EventHandler(this.kontingentToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(166, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
             this.toolStripMenuItem1.Text = "Kreditor";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
             // 
             // pbsfilesToolStripMenuItem
             // 
             this.pbsfilesToolStripMenuItem.Name = "pbsfilesToolStripMenuItem";
-            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.pbsfilesToolStripMenuItem.Text = "Pbsfiles";
             this.pbsfilesToolStripMenuItem.Click += new System.EventHandler(this.pbsfilesToolStripMenuItem_Click);
-            // 
-            // infoTekstToolStripMenuItem
-            // 
-            this.infoTekstToolStripMenuItem.Name = "infoTekstToolStripMenuItem";
-            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.infoTekstToolStripMenuItem.Text = "Info tekst";
-            this.infoTekstToolStripMenuItem.Click += new System.EventHandler(this.infoTekstToolStripMenuItem_Click);
             // 
             // hjælpToolStripMenuItem
             // 
@@ -299,7 +266,7 @@
             this.toolStripSeparator5});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1024, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(684, 25);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -356,13 +323,13 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::Medlem3060uc.Properties.Settings.Default, "frmMainPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::Medlem3060uc.Properties.Settings.Default, "frmMainSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::Medlem3060uc.Properties.Settings.Default, "frmMedlemmerPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.IsMdiContainer = true;
-            this.Location = global::Medlem3060uc.Properties.Settings.Default.frmMainPoint;
+            this.Location = global::Medlem3060uc.Properties.Settings.Default.frmMedlemmerPoint;
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(700, 400);
             this.Name = "FrmMain";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Puls 3060";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
@@ -386,22 +353,16 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.ToolStripMenuItem pBSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afslutToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem systemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem pbsfilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hjælpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem omToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem infoTekstToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         internal System.Windows.Forms.ToolStripProgressBar MainformProgressBar;
         internal System.Windows.Forms.ToolStripStatusLabel MainformProgressText;
-        private System.Windows.Forms.ToolStripMenuItem reSendToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kontingentToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem uniContaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem impoerEmailBilagToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportDanskeErhvervToolStripMenuItem;
@@ -410,7 +371,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem posterTilRegnskabToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripDanskeErhvervExport;
-        private System.Windows.Forms.ToolStripMenuItem opdaterAppDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sysInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportMobilePayToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
