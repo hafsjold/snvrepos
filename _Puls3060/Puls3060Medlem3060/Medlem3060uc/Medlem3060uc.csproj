@@ -38,7 +38,7 @@
     <ProductName>Medlem3060uc</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>9.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -121,6 +121,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>Medlem3060_2_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon1.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.4.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -294,6 +297,7 @@
   <ItemGroup>
     <None Include="Resources\Add.bmp" />
     <Content Include="DC\API\OIOUBL\Classes to export\Resources\OIOUBL_Invoice_Schematron.xsl" />
+    <Content Include="Icon1.ico" />
     <Content Include="Resources\info.png" />
     <Content Include="Resources\logopart.jpg" />
     <None Include="Resources\Summa.ico" />
