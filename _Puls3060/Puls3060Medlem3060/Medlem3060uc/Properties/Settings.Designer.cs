@@ -25,30 +25,6 @@ namespace Medlem3060uc.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("31")]
-        public int BetalingsFristiDageGamleMedlemmer {
-            get {
-                return ((int)(this["BetalingsFristiDageGamleMedlemmer"]));
-            }
-            set {
-                this["BetalingsFristiDageGamleMedlemmer"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("61")]
-        public int BetalingsFristiDageNyeMedlemmer {
-            get {
-                return ((int)(this["BetalingsFristiDageNyeMedlemmer"]));
-            }
-            set {
-                this["BetalingsFristiDageNyeMedlemmer"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
         public global::System.Drawing.Point frmMainPoint {
             get {
@@ -68,30 +44,6 @@ namespace Medlem3060uc.Properties {
             }
             set {
                 this["frmMainSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
-        public global::System.Drawing.Point frmMedlemmerPoint {
-            get {
-                return ((global::System.Drawing.Point)(this["frmMedlemmerPoint"]));
-            }
-            set {
-                this["frmMedlemmerPoint"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("800, 600")]
-        public global::System.Drawing.Size frmMedlemmerSize {
-            get {
-                return ((global::System.Drawing.Size)(this["frmMedlemmerSize"]));
-            }
-            set {
-                this["frmMedlemmerSize"] = value;
             }
         }
         
@@ -133,78 +85,6 @@ namespace Medlem3060uc.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
-        public global::System.Windows.Forms.FormWindowState frmRegnskabState {
-            get {
-                return ((global::System.Windows.Forms.FormWindowState)(this["frmRegnskabState"]));
-            }
-            set {
-                this["frmRegnskabState"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("531, 398")]
-        public global::System.Drawing.Size frmRegnskabSize {
-            get {
-                return ((global::System.Drawing.Size)(this["frmRegnskabSize"]));
-            }
-            set {
-                this["frmRegnskabSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmRegnskabPoint {
-            get {
-                return ((global::System.Drawing.Point)(this["frmRegnskabPoint"]));
-            }
-            set {
-                this["frmRegnskabPoint"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("829, 513")]
-        public global::System.Drawing.Size frmKontingentForslagSize {
-            get {
-                return ((global::System.Drawing.Size)(this["frmKontingentForslagSize"]));
-            }
-            set {
-                this["frmKontingentForslagSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmKontingentForslagPoint {
-            get {
-                return ((global::System.Drawing.Point)(this["frmKontingentForslagPoint"]));
-            }
-            set {
-                this["frmKontingentForslagPoint"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("295")]
-        public int frmMedlemmerSplitteDist {
-            get {
-                return ((int)(this["frmMedlemmerSplitteDist"]));
-            }
-            set {
-                this["frmMedlemmerSplitteDist"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
         public global::System.Drawing.Point frmPbsfilesPoint {
             get {
@@ -224,78 +104,6 @@ namespace Medlem3060uc.Properties {
             }
             set {
                 this["frmPbsfilesSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("800, 600")]
-        public global::System.Drawing.Size FrmBetalingsForslagSize {
-            get {
-                return ((global::System.Drawing.Size)(this["FrmBetalingsForslagSize"]));
-            }
-            set {
-                this["FrmBetalingsForslagSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point FrmBetalingsForslagPoint {
-            get {
-                return ((global::System.Drawing.Point)(this["FrmBetalingsForslagPoint"]));
-            }
-            set {
-                this["FrmBetalingsForslagPoint"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("829, 513")]
-        public global::System.Drawing.Size frmRykkerForslagClientSize {
-            get {
-                return ((global::System.Drawing.Size)(this["frmRykkerForslagClientSize"]));
-            }
-            set {
-                this["frmRykkerForslagClientSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmRykkerForslagPoint {
-            get {
-                return ((global::System.Drawing.Point)(this["frmRykkerForslagPoint"]));
-            }
-            set {
-                this["frmRykkerForslagPoint"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("416, 211")]
-        public global::System.Drawing.Size frmPbsnetdirSize {
-            get {
-                return ((global::System.Drawing.Size)(this["frmPbsnetdirSize"]));
-            }
-            set {
-                this["frmPbsnetdirSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
-        public global::System.Drawing.Point frmPbsnetdirPoint {
-            get {
-                return ((global::System.Drawing.Point)(this["frmPbsnetdirPoint"]));
-            }
-            set {
-                this["frmPbsnetdirPoint"] = value;
             }
         }
         
@@ -323,41 +131,6 @@ namespace Medlem3060uc.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("380, 265")]
-        public global::System.Drawing.Size tblKontingentDateGridViewSize {
-            get {
-                return ((global::System.Drawing.Size)(this["tblKontingentDateGridViewSize"]));
-            }
-            set {
-                this["tblKontingentDateGridViewSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("41")]
-        public int tblKontingentDataGridViewRowHeadersWidth {
-            get {
-                return ((int)(this["tblKontingentDataGridViewRowHeadersWidth"]));
-            }
-            set {
-                this["tblKontingentDataGridViewRowHeadersWidth"] = value;
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=vHD50;Initial Catalog=dbPuls3060Medlem;User ID=sa;Encrypt=True;TrustS" +
-            "erverCertificate=True")]
-        public string puls3061_dk_dbConnectionString_Test {
-            get {
-                return ((string)(this["puls3061_dk_dbConnectionString_Test"]));
-            }
-        }
-        
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
@@ -378,41 +151,6 @@ namespace Medlem3060uc.Properties {
             }
             set {
                 this["UserPassword"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
-        public global::System.Drawing.Point frmPusterummetPoint {
-            get {
-                return ((global::System.Drawing.Point)(this["frmPusterummetPoint"]));
-            }
-            set {
-                this["frmPusterummetPoint"] = value;
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=vHD50;Initial Catalog=dbPuls3060Medlem;User ID=sa;Encrypt=True;TrustS" +
-            "erverCertificate=True")]
-        public string test_dbConnectionString_Test {
-            get {
-                return ((string)(this["test_dbConnectionString_Test"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmMedlemExtraPoint {
-            get {
-                return ((global::System.Drawing.Point)(this["frmMedlemExtraPoint"]));
-            }
-            set {
-                this["frmMedlemExtraPoint"] = value;
             }
         }
     }

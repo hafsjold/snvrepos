@@ -90,23 +90,10 @@ namespace Medlem3060uc
             this.Close();
         }
 
-
-
         private void omToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult res = (new AboutBox()).ShowDialog();
         }
-
-        private void infoTekstToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!FocusChild("Info tekst"))
-            {
-                FrmInfotekst m_frmInfotekst = new FrmInfotekst();
-                m_frmInfotekst.MdiParent = this;
-                m_frmInfotekst.Show();
-            }
-        }
-
 
         private void kontingentToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -55,7 +55,7 @@ namespace Medlem3060uc
 
             string rec_regnskab_Eksportmappe = @"%userprofile%\OneDrive\Documents\SummaSummarum"; // work
             rec_regnskab_Eksportmappe = Environment.ExpandEnvironmentVariables(rec_regnskab_Eksportmappe);
-            string SaveAs = rec_regnskab_Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
+            string SaveAs = rec_regnskab_Eksportmappe + @"\" + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
 
             List<clsMedlemExternAll> MedlemmerAll = new List<clsMedlemExternAll>();
             var api = UCInitializer.GetBaseAPI;
@@ -175,11 +175,11 @@ namespace Medlem3060uc
                     oWB.Saved = true;
                     oXL.Visible = true;
                     this.MainformProgressBar.Visible = false;
+                    oXL.Quit();
+                    oXL = null;
 
                     this.imapSaveExcelFile(SaveAs, "Puls3060 Medlems-oplysninger");
 
-                    //oXL.Quit();
-                    //oXL = null;
                 }
                 catch (Exception theException)
                 {
@@ -383,9 +383,9 @@ namespace Medlem3060uc
             _Excel.Window oWindow;
             _Excel.Range oRng;
 
-            string rec_regnskab_Eksportmappe = @"%userprofile%\OneDrive\Documents\SummaSummarum\"; // work
+            string rec_regnskab_Eksportmappe = @"%userprofile%\OneDrive\Documents\SummaSummarum"; // work
             rec_regnskab_Eksportmappe = Environment.ExpandEnvironmentVariables(rec_regnskab_Eksportmappe);
-            string SaveAs = rec_regnskab_Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
+            string SaveAs = rec_regnskab_Eksportmappe + @"\" + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
 
             var JournalPoster = from h in karGLTrans
                                 join d1 in karGLAccount on h._Account equals d1._Account into details1
@@ -604,12 +604,12 @@ namespace Medlem3060uc
                     oWB.Saved = true;
                     oXL.Visible = true;
                     this.MainformProgressBar.Visible = false;
+                    oXL.Quit();
+                    oXL = null;
 
                     this.imapSaveExcelFile(SaveAs, "Puls3060 Regnskab");
 
 
-                    //oXL.Quit();
-                    //oXL = null;
                 }
                 catch (Exception theException)
                 {
