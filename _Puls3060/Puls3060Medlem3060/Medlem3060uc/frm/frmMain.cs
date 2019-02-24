@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using nsPbs3060;
 
@@ -33,6 +34,21 @@ namespace Medlem3060uc
                 this.toolStripStatusLabel2.AutoSize = true;
             }
 
+            try
+            {
+                var antalBogføringer = Program.dbData3060.tblbets.Where(b => b.bogforingsdato > DateTime.Now.AddDays(-30)).Count();
+            }
+            catch
+            {
+                DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                    "Medlem3060uc", //titleString   
+                    "Ingen forbindelse til Database Server", //bigString 
+                    null, //smallString
+                    null, //leftButton
+                    "OK", //rightButton
+                    global::Medlem3060uc.Properties.Resources.Message_info); //iconSet   
+            }
+
 #if (DEBUG)
             testToolStripMenuItem.Visible = true;
 #endif
@@ -40,9 +56,12 @@ namespace Medlem3060uc
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //_PipeThread.Join();
-            Program.dbData3060.SubmitChanges();
-            Properties.Settings.Default.Save();
+            try
+            {
+                Program.dbData3060.SubmitChanges();
+                Properties.Settings.Default.Save();
+            }
+            catch { }
         }
 
         private bool FocusChild(string child)

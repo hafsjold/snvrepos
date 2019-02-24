@@ -92,14 +92,14 @@
             this.bindingNavigatorAddNewItem1,
             this.bindingNavigatorDeleteItem1,
             this.toolStripSeparator});
-            this.bNavKreditor.Location = new System.Drawing.Point(0, 275);
+            this.bNavKreditor.Location = new System.Drawing.Point(0, 289);
             this.bNavKreditor.MoveFirstItem = this.bindingNavigatorMoveFirstItem1;
             this.bNavKreditor.MoveLastItem = this.bindingNavigatorMoveLastItem1;
             this.bNavKreditor.MoveNextItem = this.bindingNavigatorMoveNextItem1;
             this.bNavKreditor.MovePreviousItem = this.bindingNavigatorMovePreviousItem1;
             this.bNavKreditor.Name = "bNavKreditor";
             this.bNavKreditor.PositionItem = this.bindingNavigatorPositionItem1;
-            this.bNavKreditor.Size = new System.Drawing.Size(304, 25);
+            this.bNavKreditor.Size = new System.Drawing.Size(325, 25);
             this.bNavKreditor.TabIndex = 1;
             this.bNavKreditor.Text = "bindingNavigator2";
             // 
@@ -115,7 +115,7 @@
             // bindingNavigatorCountItem1
             // 
             this.bindingNavigatorCountItem1.Name = "bindingNavigatorCountItem1";
-            this.bindingNavigatorCountItem1.Size = new System.Drawing.Size(36, 22);
+            this.bindingNavigatorCountItem1.Size = new System.Drawing.Size(35, 22);
             this.bindingNavigatorCountItem1.Text = "of {0}";
             this.bindingNavigatorCountItem1.ToolTipText = "Total number of items";
             // 
@@ -390,16 +390,13 @@
             this.Controls.Add(this.Datalevnavn);
             this.Controls.Add(this.Datalevnr);
             this.Controls.Add(this.bNavKreditor);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::Medlem3060uc.Properties.Settings.Default, "frmKreditorPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::Medlem3060uc.Properties.Settings.Default, "frmKreditorSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DataBindings.Add(new System.Windows.Forms.Binding("WindowState", global::Medlem3060uc.Properties.Settings.Default, "frmKreditorState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Location = global::Medlem3060uc.Properties.Settings.Default.frmKreditorPoint;
             this.Name = "FrmKreditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Kreditor";
             this.WindowState = global::Medlem3060uc.Properties.Settings.Default.frmKreditorState;
-            this.Load += new System.EventHandler(this.FrmKreditor_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmKreditor_FormClosing);
+            this.Load += new System.EventHandler(this.FrmKreditor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsKreditor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bNavKreditor)).EndInit();
             this.bNavKreditor.ResumeLayout(false);
