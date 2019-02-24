@@ -53,9 +53,9 @@ namespace Medlem3060uc
             _Excel.Window oWindow;
             _Excel.Range oRng;
 
-            string rec_regnskab_Eksportmappe = @"%userprofile%\OneDrive\Documents\SummaSummarum"; // work
-            rec_regnskab_Eksportmappe = Environment.ExpandEnvironmentVariables(rec_regnskab_Eksportmappe);
-            string SaveAs = rec_regnskab_Eksportmappe + @"\" + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
+            string rec_MedlemsLister = @"Z:\Medlemslister"; 
+            rec_MedlemsLister = Environment.ExpandEnvironmentVariables(rec_MedlemsLister);
+            string SaveAs = rec_MedlemsLister + @"\" + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
 
             List<clsMedlemExternAll> MedlemmerAll = new List<clsMedlemExternAll>();
             var api = UCInitializer.GetBaseAPI;
@@ -194,8 +194,6 @@ namespace Medlem3060uc
             }
 
         }
-
-
 
         public void imapSaveExcelFile(string filename, string PSubjectBody)
         {
@@ -383,9 +381,9 @@ namespace Medlem3060uc
             _Excel.Window oWindow;
             _Excel.Range oRng;
 
-            string rec_regnskab_Eksportmappe = @"%userprofile%\OneDrive\Documents\SummaSummarum"; // work
-            rec_regnskab_Eksportmappe = Environment.ExpandEnvironmentVariables(rec_regnskab_Eksportmappe);
-            string SaveAs = rec_regnskab_Eksportmappe + @"\" + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
+            string rec_Regnskaber = @"Z:\Regnskaber";
+            rec_Regnskaber = Environment.ExpandEnvironmentVariables(rec_Regnskaber);
+            string SaveAs = rec_Regnskaber + @"\" + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
 
             var JournalPoster = from h in karGLTrans
                                 join d1 in karGLAccount on h._Account equals d1._Account into details1

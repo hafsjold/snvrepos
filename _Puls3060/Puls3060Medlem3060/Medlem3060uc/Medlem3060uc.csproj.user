@@ -2,8 +2,8 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
-    <PublishUrlHistory>C:\Users\regns\OneDrive\Install\Puls3060Medlem3060uc\|C:\Users\regns\OneDrive\Install\Puls3060Medlem3060\</PublishUrlHistory>
-    <InstallUrlHistory />
+    <PublishUrlHistory>Z:\Install\Puls3060Medlem3060uc\|C:\Users\regns\OneDrive\Install\Puls3060Medlem3060uc\|C:\Users\regns\OneDrive\Install\Puls3060Medlem3060\</PublishUrlHistory>
+    <InstallUrlHistory>\\puls3060.file.core.windows.net\puls3060\Medlem3060uc\</InstallUrlHistory>
     <SupportUrlHistory />
     <UpdateUrlHistory />
     <BootstrapperUrlHistory />
