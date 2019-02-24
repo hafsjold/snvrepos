@@ -208,8 +208,8 @@
             this.tblKontingentDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblKontingentDataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblKontingentDataGridView.Name = "tblKontingentDataGridView";
-            this.tblKontingentDataGridView.RowHeadersWidth = global::Medlem3060uc.Properties.Settings.Default.tblKontingentDataGridViewRowHeadersWidth;
-            this.tblKontingentDataGridView.Size = global::Medlem3060uc.Properties.Settings.Default.tblKontingentDateGridViewSize;
+            //this.tblKontingentDataGridView.RowHeadersWidth = global::Medlem3060uc.Properties.Settings.Default.tblKontingentDataGridViewRowHeadersWidth;
+            //this.tblKontingentDataGridView.Size = global::Medlem3060uc.Properties.Settings.Default.tblKontingentDateGridViewSize;
             this.tblKontingentDataGridView.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
