@@ -30,11 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmKontingent));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bsKontingent = new System.Windows.Forms.BindingSource(this.components);
             this.bnKontingent = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
@@ -50,12 +45,12 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tblKontingentBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.tblKontingentDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.startdatoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.slutdatoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.startalderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.slutalderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.aarskontingentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.bsKontingent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bnKontingent)).BeginInit();
             this.bnKontingent.SuspendLayout();
@@ -93,7 +88,7 @@
             this.bnKontingent.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bnKontingent.Name = "bnKontingent";
             this.bnKontingent.PositionItem = this.bindingNavigatorPositionItem;
-            this.bnKontingent.Size = new System.Drawing.Size(380, 25);
+            this.bnKontingent.Size = new System.Drawing.Size(673, 25);
             this.bnKontingent.TabIndex = 0;
             this.bnKontingent.Text = "bindingNavigator1";
             // 
@@ -109,7 +104,7 @@
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -196,83 +191,54 @@
             this.tblKontingentDataGridView.AutoGenerateColumns = false;
             this.tblKontingentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblKontingentDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6});
-            this.tblKontingentDataGridView.DataBindings.Add(new System.Windows.Forms.Binding("Size", global::Medlem3060uc.Properties.Settings.Default, "tblKontingentDateGridViewSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tblKontingentDataGridView.DataBindings.Add(new System.Windows.Forms.Binding("RowHeadersWidth", global::Medlem3060uc.Properties.Settings.Default, "tblKontingentDataGridViewRowHeadersWidth", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.idDataGridViewTextBoxColumn,
+            this.startdatoDataGridViewTextBoxColumn,
+            this.slutdatoDataGridViewTextBoxColumn,
+            this.startalderDataGridViewTextBoxColumn,
+            this.slutalderDataGridViewTextBoxColumn,
+            this.aarskontingentDataGridViewTextBoxColumn});
             this.tblKontingentDataGridView.DataSource = this.bsKontingent;
             this.tblKontingentDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblKontingentDataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblKontingentDataGridView.Name = "tblKontingentDataGridView";
-            //this.tblKontingentDataGridView.RowHeadersWidth = global::Medlem3060uc.Properties.Settings.Default.tblKontingentDataGridViewRowHeadersWidth;
-            //this.tblKontingentDataGridView.Size = global::Medlem3060uc.Properties.Settings.Default.tblKontingentDateGridViewSize;
+            this.tblKontingentDataGridView.Size = new System.Drawing.Size(673, 265);
             this.tblKontingentDataGridView.TabIndex = 1;
             // 
-            // dataGridViewTextBoxColumn1
+            // idDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             // 
-            // dataGridViewTextBoxColumn2
+            // startdatoDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Startdato";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.Format = "d";
-            dataGridViewCellStyle6.NullValue = null;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Start dato";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 80;
+            this.startdatoDataGridViewTextBoxColumn.DataPropertyName = "startdato";
+            this.startdatoDataGridViewTextBoxColumn.HeaderText = "startdato";
+            this.startdatoDataGridViewTextBoxColumn.Name = "startdatoDataGridViewTextBoxColumn";
             // 
-            // dataGridViewTextBoxColumn3
+            // slutdatoDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Slutdato";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.Format = "d";
-            dataGridViewCellStyle7.NullValue = null;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Slut dato";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 80;
+            this.slutdatoDataGridViewTextBoxColumn.DataPropertyName = "slutdato";
+            this.slutdatoDataGridViewTextBoxColumn.HeaderText = "slutdato";
+            this.slutdatoDataGridViewTextBoxColumn.Name = "slutdatoDataGridViewTextBoxColumn";
             // 
-            // dataGridViewTextBoxColumn4
+            // startalderDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Startalder";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.Format = "N0";
-            dataGridViewCellStyle8.NullValue = null;
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridViewTextBoxColumn4.HeaderText = "Fra alder";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 45;
+            this.startalderDataGridViewTextBoxColumn.DataPropertyName = "startalder";
+            this.startalderDataGridViewTextBoxColumn.HeaderText = "startalder";
+            this.startalderDataGridViewTextBoxColumn.Name = "startalderDataGridViewTextBoxColumn";
             // 
-            // dataGridViewTextBoxColumn5
+            // slutalderDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Slutalder";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.Format = "N0";
-            dataGridViewCellStyle9.NullValue = null;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Til alder";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 45;
+            this.slutalderDataGridViewTextBoxColumn.DataPropertyName = "slutalder";
+            this.slutalderDataGridViewTextBoxColumn.HeaderText = "slutalder";
+            this.slutalderDataGridViewTextBoxColumn.Name = "slutalderDataGridViewTextBoxColumn";
             // 
-            // dataGridViewTextBoxColumn6
+            // aarskontingentDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Aarskontingent";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle10.Format = "N2";
-            dataGridViewCellStyle10.NullValue = null;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridViewTextBoxColumn6.HeaderText = "Års kontingent";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 65;
+            this.aarskontingentDataGridViewTextBoxColumn.DataPropertyName = "aarskontingent";
+            this.aarskontingentDataGridViewTextBoxColumn.HeaderText = "aarskontingent";
+            this.aarskontingentDataGridViewTextBoxColumn.Name = "aarskontingentDataGridViewTextBoxColumn";
             // 
             // FrmKontingent
             // 
@@ -286,8 +252,8 @@
             this.Location = global::Medlem3060uc.Properties.Settings.Default.frmKontingentPoint;
             this.Name = "FrmKontingent";
             this.Text = "Kontingent";
-            this.Load += new System.EventHandler(this.FrmKontingent_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmKontingent_FormClosing);
+            this.Load += new System.EventHandler(this.FrmKontingent_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsKontingent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bnKontingent)).EndInit();
             this.bnKontingent.ResumeLayout(false);
@@ -315,11 +281,11 @@
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton tblKontingentBindingNavigatorSaveItem;
         private System.Windows.Forms.DataGridView tblKontingentDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn startdatoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn slutdatoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn startalderDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn slutalderDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn aarskontingentDataGridViewTextBoxColumn;
     }
 }

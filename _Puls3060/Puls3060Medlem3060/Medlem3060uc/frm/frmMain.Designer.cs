@@ -71,9 +71,9 @@
             this.toolStripStatusLabel2,
             this.MainformProgressBar,
             this.MainformProgressText});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 337);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 776);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(684, 24);
+            this.statusStrip1.Size = new System.Drawing.Size(1024, 24);
             this.statusStrip1.TabIndex = 1;
             // 
             // toolStripStatusLabel1
@@ -120,7 +120,7 @@
             this.hjælpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(684, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1024, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -266,7 +266,7 @@
             this.toolStripSeparator5});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(684, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1024, 25);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -323,10 +323,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::Medlem3060uc.Properties.Settings.Default, "frmMainSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            //this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::Medlem3060uc.Properties.Settings.Default, "frmMedlemmerPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.IsMdiContainer = true;
-            //this.Location = global::Medlem3060uc.Properties.Settings.Default.frmMedlemmerPoint;
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(700, 400);
             this.Name = "FrmMain";
