@@ -317,18 +317,18 @@ namespace Medlem3060uc
             }
         }
 
-        private void ecxelPoster()
+        private void ecxelPoster(int regnskabsår)
         {
             var api = UCInitializer.GetBaseAPI;
-            CompanyFinanceYear CurrentCompanyFinanceYear = null;
+            CompanyFinanceYear CompanyFinanceYear = null;
             var task1 = api.Query<CompanyFinanceYear>();
             task1.Wait();
             var cols1 = task1.Result;
             foreach (var col in cols1)
             {
-                if (col._Current)
+                if(col.PeriodeStart(0).Year == regnskabsår)
                 {
-                    CurrentCompanyFinanceYear = col;
+                    CompanyFinanceYear = col;
                 }
             }
             var task2a = api.Query<Debtor>();
@@ -362,7 +362,7 @@ namespace Medlem3060uc
             var karGLAccount = task3.Result;
 
             var crit = new List<PropValuePair>();
-            string dateinterval = string.Format("{0}..{1}", CurrentCompanyFinanceYear._FromDate.ToShortDateString(), CurrentCompanyFinanceYear._ToDate.ToShortDateString());
+            string dateinterval = string.Format("{0}..{1}", CompanyFinanceYear._FromDate.ToShortDateString(), CompanyFinanceYear._ToDate.ToShortDateString());
             var pair = PropValuePair.GenereteWhereElements("Date", typeof(DateTime), dateinterval);
             crit.Add(pair);
             var task4 = api.Query<GLTrans>(crit);

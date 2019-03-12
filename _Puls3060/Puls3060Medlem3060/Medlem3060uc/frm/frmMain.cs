@@ -198,7 +198,7 @@ namespace Medlem3060uc
 
         private void posterTilRegnskabToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ecxelPoster();
+            ecxelPoster(DateTime.Now.Year);
         }
 
         private void sysInfoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -240,6 +240,11 @@ namespace Medlem3060uc
         private void medlemsListeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             excelManagement();
+        }
+
+        private void posterTilRegnskabSidsteRegnskabsårToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ecxelPoster(DateTime.Now.Year - 1);
         }
     }
 }

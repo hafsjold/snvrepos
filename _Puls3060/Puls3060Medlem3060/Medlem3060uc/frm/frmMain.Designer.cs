@@ -59,6 +59,7 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolExportMobilePay = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -161,6 +162,7 @@
             this.exportDanskeErhvervToolStripMenuItem,
             this.exportMobilePayToolStripMenuItem,
             this.posterTilRegnskabToolStripMenuItem,
+            this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem,
             this.medlemsListeToolStripMenuItem});
             this.uniContaToolStripMenuItem.Name = "uniContaToolStripMenuItem";
             this.uniContaToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
@@ -169,35 +171,35 @@
             // impoerEmailBilagToolStripMenuItem
             // 
             this.impoerEmailBilagToolStripMenuItem.Name = "impoerEmailBilagToolStripMenuItem";
-            this.impoerEmailBilagToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.impoerEmailBilagToolStripMenuItem.Size = new System.Drawing.Size(273, 22);
             this.impoerEmailBilagToolStripMenuItem.Text = "Impoert Email Bilag";
             this.impoerEmailBilagToolStripMenuItem.Click += new System.EventHandler(this.impoerEmailBilagToolStripMenuItem_Click);
             // 
             // exportDanskeErhvervToolStripMenuItem
             // 
             this.exportDanskeErhvervToolStripMenuItem.Name = "exportDanskeErhvervToolStripMenuItem";
-            this.exportDanskeErhvervToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.exportDanskeErhvervToolStripMenuItem.Size = new System.Drawing.Size(273, 22);
             this.exportDanskeErhvervToolStripMenuItem.Text = "Export Danske Erhverv";
             this.exportDanskeErhvervToolStripMenuItem.Click += new System.EventHandler(this.exportDanskeErhvervToolStripMenuItem_Click);
             // 
             // exportMobilePayToolStripMenuItem
             // 
             this.exportMobilePayToolStripMenuItem.Name = "exportMobilePayToolStripMenuItem";
-            this.exportMobilePayToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.exportMobilePayToolStripMenuItem.Size = new System.Drawing.Size(273, 22);
             this.exportMobilePayToolStripMenuItem.Text = "Export MobilePay";
             this.exportMobilePayToolStripMenuItem.Click += new System.EventHandler(this.exportMobilePayToolStripMenuItem_Click);
             // 
             // posterTilRegnskabToolStripMenuItem
             // 
             this.posterTilRegnskabToolStripMenuItem.Name = "posterTilRegnskabToolStripMenuItem";
-            this.posterTilRegnskabToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.posterTilRegnskabToolStripMenuItem.Text = "Poster til Regnskab";
+            this.posterTilRegnskabToolStripMenuItem.Size = new System.Drawing.Size(273, 22);
+            this.posterTilRegnskabToolStripMenuItem.Text = "Poster til Regnskab dette regnskabsår";
             this.posterTilRegnskabToolStripMenuItem.Click += new System.EventHandler(this.posterTilRegnskabToolStripMenuItem_Click);
             // 
             // medlemsListeToolStripMenuItem
             // 
             this.medlemsListeToolStripMenuItem.Name = "medlemsListeToolStripMenuItem";
-            this.medlemsListeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.medlemsListeToolStripMenuItem.Size = new System.Drawing.Size(273, 22);
             this.medlemsListeToolStripMenuItem.Text = "Medlems Liste";
             this.medlemsListeToolStripMenuItem.Click += new System.EventHandler(this.medlemsListeToolStripMenuItem_Click);
             // 
@@ -315,6 +317,13 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
+            // posterTilRegnskabSidsteRegnskabsårToolStripMenuItem
+            // 
+            this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem.Name = "posterTilRegnskabSidsteRegnskabsårToolStripMenuItem";
+            this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem.Size = new System.Drawing.Size(273, 22);
+            this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem.Text = "Poster til Regnskab sidste regnskabsår";
+            this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem.Click += new System.EventHandler(this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -374,6 +383,7 @@
         private System.Windows.Forms.ToolStripButton toolExportMobilePay;
         private System.Windows.Forms.ToolStripButton toolStripImpoetEmailBilag;
         private System.Windows.Forms.ToolStripMenuItem medlemsListeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem posterTilRegnskabSidsteRegnskabsårToolStripMenuItem;
     }
 }
 
