@@ -119,7 +119,7 @@ namespace FileshareToOneDrive
             if (true)
             {
                 clsReadDrive objReadDrive = new clsReadDrive();
-                /*
+  
                 //recServer = m_servers.Where(s => s.spSite == "/hn").First();
                 //objReadDrive.load("Folder", recServer);
                 //objReadDrive.load("File", recServer);
@@ -143,11 +143,11 @@ namespace FileshareToOneDrive
                 recServer = m_servers.Where(s => s.spSite == "/regnskab").First();
                 objReadDrive.load("Folder", recServer);
                 objReadDrive.load("File", recServer);
-                */
+ 
                 recServer = m_servers.Where(s => s.spSite == "/billeder").First();
                 objReadDrive.load("Folder", recServer);
                 objReadDrive.load("File", recServer);
-                /*
+  
                 recServer = m_servers.Where(s => s.spSite == "/drift").First();
                 objReadDrive.load("Folder", recServer);
                 objReadDrive.load("File", recServer);
@@ -167,15 +167,14 @@ namespace FileshareToOneDrive
                 recServer = m_servers.Where(s => s.spSite == "/klient").First();
                 objReadDrive.load("Folder", recServer);
                 objReadDrive.load("File", recServer);
-                */
+
             }
 
             if (true)
             {
                 clsContent.init();
                 clsProd03 objProd03 = new clsProd03();
-
-                /*
+             
                 //recServer = m_servers.Where(s => s.spSite == "/hn").First();
                 //objProd03.CreateFoldersAsync(recServer).Wait();
                 //objProd03.CreateFilesAsync(recServer).Wait();
@@ -199,11 +198,11 @@ namespace FileshareToOneDrive
                 recServer = m_servers.Where(s => s.spSite == "/regnskab").First();
                 objProd03.CreateFoldersAsync(recServer).Wait();
                 objProd03.CreateFilesAsync(recServer).Wait();
-                */
+                
                 recServer = m_servers.Where(s => s.spSite == "/billeder").First();
                 objProd03.CreateFoldersAsync(recServer).Wait();
                 objProd03.CreateFilesAsync(recServer).Wait();
-                /*
+                
                 recServer = m_servers.Where(s => s.spSite == "/drift").First();
                 objProd03.CreateFoldersAsync(recServer).Wait();
                 objProd03.CreateFilesAsync(recServer).Wait();
@@ -223,7 +222,7 @@ namespace FileshareToOneDrive
                 recServer = m_servers.Where(s => s.spSite == "/klient").First();
                 objProd03.CreateFoldersAsync(recServer).Wait();
                 objProd03.CreateFilesAsync(recServer).Wait();
-                */ 
+                
             }
         }
     }
