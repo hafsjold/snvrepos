@@ -278,7 +278,7 @@ namespace Pbs3060
                         betalingsdato = rstdeb.Betalingsdato,
                         advisbelob = rstdeb.Belob,
                         ocrstring = OcrString,
-                        underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører",
+                        underskrift_navn = "\r\nBirgitte Rud Goeskjær\r\nRegnskabsfører",
                         sendtsom = p_dbData3060.SendtSomString((int)rstdeb.Faknr),
                         kundenr = rstdeb.Kundenr.ToString()
                     };
@@ -560,7 +560,40 @@ namespace Pbs3060
             return items;
         }
 
-        public Tuple<int, int> pending_rsform_indmeldelser(dbData3060DataContext p_dbData3060, puls3060_dkEntities p_dbPuls3060_dk, CrudAPI api)
+        //******************************************************************************
+        public int ImportEmailNyeMedlemmer()
+        {
+            MimeMessage message;
+            int AntalMailsNyeMedlemmer = 0;
+
+            using (var imap_client = new ImapClient())
+            {
+                imap_client.Connect("imap.gigahost.dk", 993, true);
+                imap_client.AuthenticationMechanisms.Remove("XOAUTH");
+                imap_client.Authenticate("medlem@puls3060.dk", "ZUiwXye6W1kE");
+                var Puls3060Inbox = imap_client.GetFolder("Inbox");
+                var Puls3060Arkiv = imap_client.GetFolder("Arkiv");
+
+                Puls3060Inbox.Open(FolderAccess.ReadWrite);
+                var InboxResults = Puls3060Inbox.Search(SearchQuery.All);
+                AntalMailsNyeMedlemmer = InboxResults.Count();
+                foreach (var mail1 in InboxResults)
+                {
+                    message = Puls3060Inbox.GetMessage(mail1);
+                    // Extract the new member here
+                    
+                    
+                    
+                    
+                    
+                    // move email to arkiv
+                    var newId = Puls3060Inbox.MoveTo(mail1, Puls3060Arkiv);
+               }
+            }
+            return AntalMailsNyeMedlemmer;
+        }
+
+        public Tuple<int, int> pending_rsform_indmeldelser(dbData3060DataContext p_dbData3060, CrudAPI api)
         {
             int lobnr = 0;
             string wadvistekst = "";
@@ -572,6 +605,7 @@ namespace Pbs3060
             DateTime KontingentFradato = DateTime.MinValue;
             int AntalForslag = 0;
 
+            /*
             List<ecpwt_rsform_submissions> qry1List = (from s in p_dbPuls3060_dk.ecpwt_rsform_submissions select s).ToList();
 
             var qry2 = from s in qry1List
@@ -627,6 +661,10 @@ namespace Pbs3060
                 p_dbData3060.tblIndmeldelse.Add(recIndmeldelse);
                 p_dbData3060.SaveChanges();
             }
+            */
+
+            return new Tuple<int, int>(wantalfakturaer, lobnr); //<-------------------------- HUSK
+            ImportEmailNyeMedlemmer();
 
             List<tblIndmeldelse> qry4List = (from m in p_dbData3060.tblIndmeldelse where m.Nr == null select m).ToList();
             foreach (var m in qry4List)
@@ -722,6 +760,7 @@ namespace Pbs3060
 
             return new Tuple<int, int>(wantalfakturaer, lobnr);
         }
+
 
         public Tuple<int, int> rsmembeshhip_kontingent_fakturer_bs1(dbData3060DataContext p_dbData3060,  Memkontingentforslag memKontingentforslag, pbsType forsType)
         {
@@ -1055,7 +1094,7 @@ namespace Pbs3060
                         betalingsdato = rstdeb.Betalingsdato,
                         advisbelob = rstdeb.Belob,
                         ocrstring = OcrString,
-                        underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører",
+                        underskrift_navn = "\r\nBirgitte Rud Goeskjær\r\nRegnskabsfører",
                         sendtsom = p_dbData3060.SendtSomString((int)rstdeb.Faknr),
                         kundenr = rstdeb.Kundenr.ToString()
                     };
@@ -1450,7 +1489,7 @@ namespace Pbs3060
                     betalingsdato = rstdeb.Betalingsdato,
                     advisbelob = rstdeb.Belob,
                     ocrstring = p_dbData3060.OcrString((int)rstdeb.Faknr),
-                    underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører",
+                    underskrift_navn = "\r\nBirgitte Rud Goeskjær\r\nRegnskabsfører",
                     kundenr = rstdeb.Kundenr.ToString()
                 }.getinfotekst(p_dbData3060);
 
@@ -2097,7 +2136,7 @@ namespace Pbs3060
                         betalingsdato = rstdeb.Betalingsdato,
                         advisbelob = rstdeb.Belob,
                         ocrstring = OcrString,
-                        underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører",
+                        underskrift_navn = "\r\nBirgitte Rud Goeskjær\r\nRegnskabsfører",
                         sendtsom = p_dbData3060.SendtSomString((int)rstdeb.Faknr),
                         kundenr = rstdeb.Kundenr.ToString()
                     };
