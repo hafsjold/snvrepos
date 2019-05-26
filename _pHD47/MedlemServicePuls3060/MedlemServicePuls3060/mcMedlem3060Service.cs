@@ -199,10 +199,9 @@ namespace MedlemServicePuls3060
                             break;
 
                         case enumTask.KontingentNyeMedlemmer:
-                            puls3060_dkEntities cjdb = new puls3060_dkEntities();
                             CrudAPI capi = UCInitializer.GetBaseAPI;
                             clsPbs601 objPbs601c = new clsPbs601();
-                            Tuple<int, int> tresultc = objPbs601c.pending_rsform_indmeldelser(m_dbData3060, cjdb, capi);
+                            Tuple<int, int> tresultc = objPbs601c.pending_rsform_indmeldelser(m_dbData3060, capi);
                             int AntalKontingent = tresultc.Item1;
                             int lobnrc = tresultc.Item2;
                             if ((AntalKontingent > 0))
