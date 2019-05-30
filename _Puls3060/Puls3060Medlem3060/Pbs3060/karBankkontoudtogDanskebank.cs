@@ -69,7 +69,7 @@ namespace nsPbs3060
             string ln = null;
             recBankkontoudtogDanskebank rec;
             Regex regexKontoplan = new Regex(@"""(.*?)"";|([^;]*);|(.*)$");
-            using (StreamReader sr = new StreamReader(ts, Encoding.Default))
+            using (StreamReader sr = new StreamReader(ts, Encoding.Default))  
             {
                 while ((ln = sr.ReadLine()) != null)
                 {
@@ -185,7 +185,7 @@ namespace nsPbs3060
                 ExportFromDate = ExportFromDate.AddDays(-DaysSlip);
             }
 
-            ExportFromDate = DateTime.Now.AddDays(-30); //<-------------------Fjernes
+            ExportFromDate = DateTime.Now.AddDays(-70); //<-------------------Fjernes
 
             using (StringWriter sr = new StringWriter())
             {
