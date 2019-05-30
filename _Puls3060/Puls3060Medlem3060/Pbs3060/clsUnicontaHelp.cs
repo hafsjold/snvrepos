@@ -211,7 +211,7 @@ namespace nsPbs3060
                                  Delsystem = "Finans",
                                  Tekst = "Ukendt post",
                                  Kontotype = "Finans",
-                                 Konto = "9900",
+                                 Konto = "5840",
                                  Modkontotype = "Finans",
                                  Modkonto = "9900",
                                  Kredit = 0.00

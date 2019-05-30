@@ -90,7 +90,7 @@ namespace nsPbs3060
                 ExportFromDate.AddDays(-DaysSlip);
             }
 
-            ExportFromDate = DateTime.Now.AddDays(-20);  //<<-----------------------------
+            ExportFromDate = DateTime.Now.AddDays(-100);  //<<-----------------------------
 
             IOrderedQueryable<tblbankkonto> qrybankkonto =
                 from w in m_dbData3060.tblbankkontos
@@ -119,9 +119,8 @@ namespace nsPbs3060
                 byte[] attachment = Encoding.Default.GetBytes(sr.ToString());
                 VouchersClient vc = new VouchersClient()
                 {
-                    Text = string.Format("Mobilepay Kontoudtog {0}", DateTime.Now),
+                    Text = "MobilePay",
                     Content = "Bankkontoudtog",
-                    DocumentDate = DateTime.Now,
                     Fileextension = FileextensionsTypes.CSV,
                     VoucherAttachment = attachment,
                 };

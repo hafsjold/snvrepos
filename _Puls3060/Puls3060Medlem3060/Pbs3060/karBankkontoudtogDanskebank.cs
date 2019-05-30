@@ -185,7 +185,7 @@ namespace nsPbs3060
                 ExportFromDate = ExportFromDate.AddDays(-DaysSlip);
             }
 
-            ExportFromDate = DateTime.Now.AddDays(-70); //<-------------------Fjernes
+            //ExportFromDate = DateTime.Now.AddDays(-70); //<-------------------Fjernes
 
             using (StringWriter sr = new StringWriter())
             {
@@ -212,9 +212,8 @@ namespace nsPbs3060
                 byte[] attachment = Encoding.Default.GetBytes(sr.ToString());
                 VouchersClient vc = new VouchersClient()
                 {
-                    Text = string.Format("Danske Bank Kontoudtog {0}", DateTime.Now),
+                    Text = "DanskeErhverv",
                     Content = "Bankkontoudtog",
-                    DocumentDate = DateTime.Now,
                     Fileextension = FileextensionsTypes.CSV,
                     VoucherAttachment = attachment,
                 };
