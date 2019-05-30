@@ -246,5 +246,15 @@ namespace Medlem3060uc
         {
             ecxelPoster(DateTime.Now.Year - 1);
         }
+
+        private void nytMedlemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Nyt Medlem"))
+            {
+                FrmNytMedlem frmNytMedlem = new FrmNytMedlem();
+                frmNytMedlem.MdiParent = this;
+                frmNytMedlem.Show();
+            }
+        }
     }
 }

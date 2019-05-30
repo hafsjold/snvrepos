@@ -412,6 +412,21 @@
       <Association Name="tblpaypal_tblbankkonto" Member="tblpaypal" ThisKey="paypal_pid" OtherKey="pid" Type="tblpaypal" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
+  <Table Name="dbo.tblIndmeldelse" Member="tblIndmeldelses">
+    <Type Name="tblIndmeldelse">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fornavn" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Efternavn" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Adresse" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Postnr" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Bynavn" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Mobil" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FodtAar" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Kon" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">
     <Parameter Name="Pvkey" Parameter="pvkey" Type="System.String" DbType="NVarChar(10)" />
     <Return Type="System.String" />

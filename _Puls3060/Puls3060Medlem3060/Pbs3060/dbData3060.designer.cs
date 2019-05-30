@@ -96,6 +96,9 @@ namespace nsPbs3060
     partial void Inserttblbankkonto(tblbankkonto instance);
     partial void Updatetblbankkonto(tblbankkonto instance);
     partial void Deletetblbankkonto(tblbankkonto instance);
+    partial void InserttblIndmeldelse(tblIndmeldelse instance);
+    partial void UpdatetblIndmeldelse(tblIndmeldelse instance);
+    partial void DeletetblIndmeldelse(tblIndmeldelse instance);
     #endregion
 		
 		public dbData3060DataContext() : 
@@ -309,6 +312,14 @@ namespace nsPbs3060
 			get
 			{
 				return this.GetTable<tblbankkonto>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblIndmeldelse> tblIndmeldelses
+		{
+			get
+			{
+				return this.GetTable<tblIndmeldelse>();
 			}
 		}
 		
@@ -9119,6 +9130,308 @@ namespace nsPbs3060
 						this._paypal_pid = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("tblpaypal");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblIndmeldelse")]
+	public partial class tblIndmeldelse : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _Nr;
+		
+		private string _Fornavn;
+		
+		private string _Efternavn;
+		
+		private string _Adresse;
+		
+		private string _Postnr;
+		
+		private string _Bynavn;
+		
+		private string _Mobil;
+		
+		private string _Email;
+		
+		private System.Nullable<int> _FodtAar;
+		
+		private string _Kon;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNrChanging(System.Nullable<int> value);
+    partial void OnNrChanged();
+    partial void OnFornavnChanging(string value);
+    partial void OnFornavnChanged();
+    partial void OnEfternavnChanging(string value);
+    partial void OnEfternavnChanged();
+    partial void OnAdresseChanging(string value);
+    partial void OnAdresseChanged();
+    partial void OnPostnrChanging(string value);
+    partial void OnPostnrChanged();
+    partial void OnBynavnChanging(string value);
+    partial void OnBynavnChanged();
+    partial void OnMobilChanging(string value);
+    partial void OnMobilChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnFodtAarChanging(System.Nullable<int> value);
+    partial void OnFodtAarChanged();
+    partial void OnKonChanging(string value);
+    partial void OnKonChanged();
+    #endregion
+		
+		public tblIndmeldelse()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int")]
+		public System.Nullable<int> Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fornavn", DbType="NVarChar(MAX)")]
+		public string Fornavn
+		{
+			get
+			{
+				return this._Fornavn;
+			}
+			set
+			{
+				if ((this._Fornavn != value))
+				{
+					this.OnFornavnChanging(value);
+					this.SendPropertyChanging();
+					this._Fornavn = value;
+					this.SendPropertyChanged("Fornavn");
+					this.OnFornavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Efternavn", DbType="NVarChar(MAX)")]
+		public string Efternavn
+		{
+			get
+			{
+				return this._Efternavn;
+			}
+			set
+			{
+				if ((this._Efternavn != value))
+				{
+					this.OnEfternavnChanging(value);
+					this.SendPropertyChanging();
+					this._Efternavn = value;
+					this.SendPropertyChanged("Efternavn");
+					this.OnEfternavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Adresse", DbType="NVarChar(MAX)")]
+		public string Adresse
+		{
+			get
+			{
+				return this._Adresse;
+			}
+			set
+			{
+				if ((this._Adresse != value))
+				{
+					this.OnAdresseChanging(value);
+					this.SendPropertyChanging();
+					this._Adresse = value;
+					this.SendPropertyChanged("Adresse");
+					this.OnAdresseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Postnr", DbType="NVarChar(MAX)")]
+		public string Postnr
+		{
+			get
+			{
+				return this._Postnr;
+			}
+			set
+			{
+				if ((this._Postnr != value))
+				{
+					this.OnPostnrChanging(value);
+					this.SendPropertyChanging();
+					this._Postnr = value;
+					this.SendPropertyChanged("Postnr");
+					this.OnPostnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bynavn", DbType="NVarChar(MAX)")]
+		public string Bynavn
+		{
+			get
+			{
+				return this._Bynavn;
+			}
+			set
+			{
+				if ((this._Bynavn != value))
+				{
+					this.OnBynavnChanging(value);
+					this.SendPropertyChanging();
+					this._Bynavn = value;
+					this.SendPropertyChanged("Bynavn");
+					this.OnBynavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mobil", DbType="NVarChar(MAX)")]
+		public string Mobil
+		{
+			get
+			{
+				return this._Mobil;
+			}
+			set
+			{
+				if ((this._Mobil != value))
+				{
+					this.OnMobilChanging(value);
+					this.SendPropertyChanging();
+					this._Mobil = value;
+					this.SendPropertyChanged("Mobil");
+					this.OnMobilChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(MAX)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FodtAar", DbType="Int")]
+		public System.Nullable<int> FodtAar
+		{
+			get
+			{
+				return this._FodtAar;
+			}
+			set
+			{
+				if ((this._FodtAar != value))
+				{
+					this.OnFodtAarChanging(value);
+					this.SendPropertyChanging();
+					this._FodtAar = value;
+					this.SendPropertyChanged("FodtAar");
+					this.OnFodtAarChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Kon", DbType="NVarChar(MAX)")]
+		public string Kon
+		{
+			get
+			{
+				return this._Kon;
+			}
+			set
+			{
+				if ((this._Kon != value))
+				{
+					this.OnKonChanging(value);
+					this.SendPropertyChanging();
+					this._Kon = value;
+					this.SendPropertyChanged("Kon");
+					this.OnKonChanged();
 				}
 			}
 		}

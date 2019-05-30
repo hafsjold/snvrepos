@@ -39,7 +39,7 @@
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationRevision>15</ApplicationRevision>
     <ApplicationVersion>9.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -198,6 +198,12 @@
     <Compile Include="cls\clsExcel.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frm\frmNytMedlem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmNytMedlem.Designer.cs">
+      <DependentUpon>frmNytMedlem.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmSysInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -257,6 +263,9 @@
     <EmbeddedResource Include="frm\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmNytMedlem.resx">
+      <DependentUpon>frmNytMedlem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmPbsfiles.resx">
       <DependentUpon>frmPbsfiles.cs</DependentUpon>
     </EmbeddedResource>
@@ -276,7 +285,7 @@
     <None Include="Medlem3060_2_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
-    <None Include="Properties\DataSources\nsPbs3060.clsAppData.datasource" />
+    <None Include="Properties\DataSources\nsPbs3060.tblIndmeldelse.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

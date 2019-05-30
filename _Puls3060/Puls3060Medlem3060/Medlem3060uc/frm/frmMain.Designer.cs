@@ -44,6 +44,7 @@
             this.exportDanskeErhvervToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportMobilePayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.posterTilRegnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medlemsListeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sysInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +60,7 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolExportMobilePay = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nytMedlemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -163,7 +164,8 @@
             this.exportMobilePayToolStripMenuItem,
             this.posterTilRegnskabToolStripMenuItem,
             this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem,
-            this.medlemsListeToolStripMenuItem});
+            this.medlemsListeToolStripMenuItem,
+            this.nytMedlemToolStripMenuItem});
             this.uniContaToolStripMenuItem.Name = "uniContaToolStripMenuItem";
             this.uniContaToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.uniContaToolStripMenuItem.Text = "UniConta";
@@ -196,6 +198,13 @@
             this.posterTilRegnskabToolStripMenuItem.Text = "Poster til Regnskab dette regnskabsår";
             this.posterTilRegnskabToolStripMenuItem.Click += new System.EventHandler(this.posterTilRegnskabToolStripMenuItem_Click);
             // 
+            // posterTilRegnskabSidsteRegnskabsårToolStripMenuItem
+            // 
+            this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem.Name = "posterTilRegnskabSidsteRegnskabsårToolStripMenuItem";
+            this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem.Size = new System.Drawing.Size(273, 22);
+            this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem.Text = "Poster til Regnskab sidste regnskabsår";
+            this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem.Click += new System.EventHandler(this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem_Click);
+            // 
             // medlemsListeToolStripMenuItem
             // 
             this.medlemsListeToolStripMenuItem.Name = "medlemsListeToolStripMenuItem";
@@ -217,28 +226,28 @@
             // sysInfoToolStripMenuItem
             // 
             this.sysInfoToolStripMenuItem.Name = "sysInfoToolStripMenuItem";
-            this.sysInfoToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.sysInfoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sysInfoToolStripMenuItem.Text = "SysInfo";
             this.sysInfoToolStripMenuItem.Click += new System.EventHandler(this.sysInfoToolStripMenuItem_Click);
             // 
             // kontingentToolStripMenuItem
             // 
             this.kontingentToolStripMenuItem.Name = "kontingentToolStripMenuItem";
-            this.kontingentToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.kontingentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.kontingentToolStripMenuItem.Text = "Kontingent";
             this.kontingentToolStripMenuItem.Click += new System.EventHandler(this.kontingentToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem1.Text = "Kreditor";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
             // 
             // pbsfilesToolStripMenuItem
             // 
             this.pbsfilesToolStripMenuItem.Name = "pbsfilesToolStripMenuItem";
-            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pbsfilesToolStripMenuItem.Text = "Pbsfiles";
             this.pbsfilesToolStripMenuItem.Click += new System.EventHandler(this.pbsfilesToolStripMenuItem_Click);
             // 
@@ -317,12 +326,12 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // posterTilRegnskabSidsteRegnskabsårToolStripMenuItem
+            // nytMedlemToolStripMenuItem
             // 
-            this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem.Name = "posterTilRegnskabSidsteRegnskabsårToolStripMenuItem";
-            this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem.Size = new System.Drawing.Size(273, 22);
-            this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem.Text = "Poster til Regnskab sidste regnskabsår";
-            this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem.Click += new System.EventHandler(this.posterTilRegnskabSidsteRegnskabsårToolStripMenuItem_Click);
+            this.nytMedlemToolStripMenuItem.Name = "nytMedlemToolStripMenuItem";
+            this.nytMedlemToolStripMenuItem.Size = new System.Drawing.Size(273, 22);
+            this.nytMedlemToolStripMenuItem.Text = "Nyt Medlem";
+            this.nytMedlemToolStripMenuItem.Click += new System.EventHandler(this.nytMedlemToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -384,6 +393,7 @@
         private System.Windows.Forms.ToolStripButton toolStripImpoetEmailBilag;
         private System.Windows.Forms.ToolStripMenuItem medlemsListeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem posterTilRegnskabSidsteRegnskabsårToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nytMedlemToolStripMenuItem;
     }
 }
 
