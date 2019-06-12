@@ -13,9 +13,8 @@ namespace MedlemServicePuls3060
             Uniconta.WindowsAPI.Startup.OnLoad();
             UCInitializer.InitUniconta();
 
-            System.ServiceProcess.ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[] { new mcMedlem3060Service() };
-            ServiceBase.Run(ServicesToRun);
+            var ServicesToRun = new mcMedlem3060Service();
+            
         }
 
     }

@@ -648,7 +648,7 @@ namespace Pbs3060
                            };
 
             int AntalBetalinger = rsmbrshp.Count();
-            Console.Write(string.Format("betalinger_til_rsmembership - AntalBetalinger {0}", AntalBetalinger));
+            Console.WriteLine(string.Format("betalinger_til_rsmembership - AntalBetalinger {0} <----", AntalBetalinger));
             if (rsmbrshp.Count() > 0)
             {
                 foreach (var b in rsmbrshp)

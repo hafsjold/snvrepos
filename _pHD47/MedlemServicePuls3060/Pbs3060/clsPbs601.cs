@@ -552,7 +552,7 @@ namespace Pbs3060
                     item[6] = KontingentTildato.ToString();
                     item[7] = (indmeldelse) ? "J" : "N";
                     item[8] = (tilmeldtpbs) ? "J" : "N";
-                    item[9] = m.subscriberid.ToString(); ;
+                    item[9] = (m.subscriberid != null) ? m.subscriberid.ToString() : "0";
                     item[10] = (iNr != null) ? iNr.ToString() : "";
                     items.Add(item);
                 }
@@ -605,65 +605,6 @@ namespace Pbs3060
             DateTime KontingentFradato = DateTime.MinValue;
             int AntalForslag = 0;
 
-            /*
-            List<ecpwt_rsform_submissions> qry1List = (from s in p_dbPuls3060_dk.ecpwt_rsform_submissions select s).ToList();
-
-            var qry2 = from s in qry1List
-                       join i in p_dbData3060.tblIndmeldelse on s.SubmissionId equals i.SubmissionId into indmeldelse
-                       from j in indmeldelse.DefaultIfEmpty(new tblIndmeldelse { Id = 0, SubmissionId = 0, DateSubmitted = DateTime.Now })
-                       where j.Id == 0
-                       select s;
-
-            foreach (var frm in qry2)
-            {
-                tblIndmeldelse recIndmeldelse = new tblIndmeldelse()
-                {
-                    SubmissionId = frm.SubmissionId,
-                    DateSubmitted = frm.DateSubmitted
-                };
-                var qry3 = from m in p_dbPuls3060_dk.ecpwt_rsform_submission_values where m.SubmissionId == frm.SubmissionId select m;
-                foreach (var fld in qry3)
-                {
-                    switch (fld.FieldName)
-                    {
-                        case "Fornavn":
-                            recIndmeldelse.Fornavn = fld.FieldValue;
-                            break;
-                        case "Efternavn":
-                            recIndmeldelse.Efternavn = fld.FieldValue;
-                            break;
-                        case "Adresse":
-                            recIndmeldelse.Adresse = fld.FieldValue;
-                            break;
-                        case "Postnr":
-                            recIndmeldelse.Postnr = fld.FieldValue;
-                            break;
-                        case "By":
-                            recIndmeldelse.Bynavn = fld.FieldValue;
-                            break;
-                        case "Mobil":
-                            recIndmeldelse.Mobil = fld.FieldValue;
-                            break;
-                        case "Mail2":
-                            recIndmeldelse.Email = fld.FieldValue;
-                            break;
-                        case "Fodtaar":
-                            recIndmeldelse.FodtAar = int.Parse(fld.FieldValue);
-                            break;
-                        case "Kon":
-                            recIndmeldelse.Kon = fld.FieldValue;
-                            break;
-
-                        default:
-                            break;
-                    }
-                }
-                p_dbData3060.tblIndmeldelse.Add(recIndmeldelse);
-                p_dbData3060.SaveChanges();
-            }
-            */
-
-            return new Tuple<int, int>(wantalfakturaer, lobnr); //<-------------------------- HUSK
             ImportEmailNyeMedlemmer();
 
             List<tblIndmeldelse> qry4List = (from m in p_dbData3060.tblIndmeldelse where m.Nr == null select m).ToList();
@@ -682,7 +623,7 @@ namespace Pbs3060
                     Email = m.Email,
                     Fodtaar = (int)m.FodtAar,
                     Gender = m.Kon,
-                    medlemfra = m.DateSubmitted,
+                    medlemfra = DateTime.Today,
                     status = "NytMedlem"
                 };
                 var taskMedlemInsert = api.Insert(recMedlem);
