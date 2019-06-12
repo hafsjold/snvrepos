@@ -1,8 +1,6 @@
 ﻿using System;
-using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Win32;
 using System.Linq;
 using NCrontab;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +30,7 @@ namespace MedlemServicePuls3060
     }
 
 
-    public class mcMedlem3060Service : ServiceBase
+    public class mcMedlem3060Service
     {
         public  Logger Log;
 
@@ -43,7 +41,6 @@ namespace MedlemServicePuls3060
         {
             Log = LogManager.GetLogger("databaseLogger");
 
-            this.ServiceName = "mcMedlem3060Service";
             Console.WriteLine("Medlem3060Service Starter #2");
             //Log.Log(LogLevel.Info, "Medlem3060Service Starter #2");
            try
@@ -59,26 +56,6 @@ namespace MedlemServicePuls3060
         private T StringToEnum<T>(string name)
         {
             return (T)Enum.Parse(typeof(T), name);
-        }
-
-        protected override void OnStart(string[] args)
-        {
-            Console.WriteLine("Medlem3060Service OnStart()");
-            try
-            {
-                UCInitializer.UnicontaLogin();
-            }
-            catch { }
-            _SchedulerThread = new Thread(Scheduler);
-            _SchedulerThread.Name = "Scheduler";
-            _SchedulerThread.Start();
-        }
-
-        protected override void OnStop()
-        {
-            Service_waitStopHandle.Set();
-            _SchedulerThread.Join();
-            Console.WriteLine("Medlem3060Service OnStop()");
         }
 
         private void Scheduler()

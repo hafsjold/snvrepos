@@ -8,8 +8,6 @@ namespace Pbs3060
     {
         [Key]
         public int Id { get; set; }
-        public int SubmissionId { get; set; }
-        public DateTime DateSubmitted { get; set; }
         public int? Nr { get; set; }
         public string Fornavn { get; set; }
         public string Efternavn { get; set; }
