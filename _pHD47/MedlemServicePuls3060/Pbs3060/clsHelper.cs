@@ -444,7 +444,6 @@ namespace Pbs3060
         public DateTime? tildato { get; set; }
         public bool tilmeldtpbs { get; set; }
         public bool indmeldelse { get; set; }
-        public int subscriber_id { get; set; }
         public int memberid { get; set; }
         public string name { get; set; }
 

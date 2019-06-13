@@ -39,7 +39,6 @@ namespace Pbs3060
                     DateTime tildato = DateTime.Parse(item[6]);
                     bool indmeldelse = (item[7] == "J") ? true : false;
                     bool tilmeldtpbs = (item[8] == "J") ? true : false;
-                    int subscriber_id = int.Parse(item[9]);
                     int memberid = (!string.IsNullOrEmpty(item[10])) ? int.Parse(item[10]) : m_dbData3060.nextval_v2("memberid");
 
                     recKontingentforslag rec_Kontingentforslag = new recKontingentforslag
@@ -53,7 +52,6 @@ namespace Pbs3060
                         tildato = tildato,
                         indmeldelse = indmeldelse,
                         tilmeldtpbs = tilmeldtpbs,
-                        subscriber_id = subscriber_id,
                         memberid = memberid,
                         name = name
                     };
