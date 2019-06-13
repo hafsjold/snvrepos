@@ -545,14 +545,11 @@ namespace Pbs3060
                     item[1] = sNavn;
                     item[2] = m.Adresse;
                     item[3] = m.Postnr;
-                    //item[4] = string.Format("{0:dd-MM-yyy}", KontingentFradato);
                     item[4] = KontingentFradato.ToString();
                     item[5] = ikontingent.ToString();
-                    //item[6] = string.Format("{0:dd-MM-yyy}", KontingentTildato);
                     item[6] = KontingentTildato.ToString();
                     item[7] = (indmeldelse) ? "J" : "N";
                     item[8] = (tilmeldtpbs) ? "J" : "N";
-                    item[9] = (m.subscriberid != null) ? m.subscriberid.ToString() : "0";
                     item[10] = (iNr != null) ? iNr.ToString() : "";
                     items.Add(item);
                 }
@@ -699,89 +696,6 @@ namespace Pbs3060
                 wantalfakturaer++;
             }
 
-            return new Tuple<int, int>(wantalfakturaer, lobnr);
-        }
-
-
-        public Tuple<int, int> rsmembeshhip_kontingent_fakturer_bs1(dbData3060DataContext p_dbData3060,  Memkontingentforslag memKontingentforslag, pbsType forsType)
-        {
-            // KAN SLETTES
-            int lobnr;
-            string wadvistekst = "";
-            int winfotekst;
-            int wantalfakturaer;
-            wantalfakturaer = 0;
-
-            bool? wbsh = (from h in memKontingentforslag select h.bsh).First();
-            bool bsh = (wbsh == null) ? false : (bool)wbsh;
-            string wDelsystem;
-            if (bsh) wDelsystem = "BSH";
-            else wDelsystem = "BS1";
-
-            Tbltilpbs rec_tilpbs = new Tbltilpbs   //<------------------------------------
-            {
-                Delsystem = wDelsystem,
-                Leverancetype = "0601",
-                Udtrukket = DateTime.Now
-            };
-            p_dbData3060.Tbltilpbs.Add(rec_tilpbs);
-            p_dbData3060.SaveChanges();
-            lobnr = rec_tilpbs.Id;
-
-            IEnumerable<recKontingentforslag> qry;
-            if (wDelsystem == "BS1")
-            {
-                if (forsType == pbsType.betalingsservice)
-                {
-                    qry = from k in memKontingentforslag where k.tilmeldtpbs select k;
-                }
-                else
-                {
-                    qry = from k in memKontingentforslag where (!k.tilmeldtpbs) select k;
-                }
-            }
-            else if (wDelsystem == "BSH")
-            {
-                if (forsType == pbsType.betalingsservice)
-                {
-                    qry = from k in memKontingentforslag where k.user_id < 0 select k; // ingen skal vælges her
-                }
-                else
-                {
-                    qry = from k in memKontingentforslag select k; // Alle skal vælges her
-                }
-            }
-            else
-            {
-                qry = from k in memKontingentforslag where k.user_id < 0 select k; // ingen skal vælges her
-            }
-
-            foreach (recKontingentforslag rec in qry)
-            {
-                if (rec.indmeldelse) winfotekst = 11;
-                else winfotekst = (rec.tilmeldtpbs) ? 10 : 12;
-                int next_faknr = p_dbData3060.nextval_v2("faknr");
-                string windbetalerident = clsHelper.generateIndbetalerident(next_faknr); //?????????????????????????????????
-                Tblfak rec_fak = new Tblfak
-                {
-                    Betalingsdato = rec.betalingsdato,
-                    Nr = rec.memberid,
-                    Faknr = next_faknr,
-                    Advistekst = wadvistekst,
-                    Advisbelob = rec.advisbelob,
-                    Infotekst = winfotekst,
-                    Bogfkonto = 1800,
-                    Vnr = 1,
-                    Fradato = rec.fradato,
-                    Tildato = rec.tildato,
-                    Indmeldelse = rec.indmeldelse,
-                    Tilmeldtpbs = rec.tilmeldtpbs,
-                    Indbetalerident = windbetalerident
-                };
-                rec_tilpbs.Tblfak.Add(rec_fak);
-                wantalfakturaer++;
-            }
-            p_dbData3060.SaveChanges();
             return new Tuple<int, int>(wantalfakturaer, lobnr);
         }
 
