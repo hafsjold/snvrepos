@@ -18,6 +18,8 @@ namespace MedlemServicePuls3060
         const string ServiceBusConnectionString = "Endpoint=sb://medlemservicebus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=CfRUJ/uGHdBsYKU0psjtjopHaEv15SvT40bi2rpPeoQ=";
         const string QueueName = "medlemqueue";
         public static IQueueClient queueClient;
+        public static DateTime ScheduledEnqueueTimeUtc;
+        public static string DTFormat = "dd/MM/yyyy HH:mm:ss zz";
 
         //*************************************************************************************************************
         //*************************************************************************************************************
@@ -30,7 +32,7 @@ namespace MedlemServicePuls3060
             catch { }
 
             queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
-            //Schedule(); //<----- HUSK !!!!!!!!
+            Schedule(); 
 
             var cts = new CancellationTokenSource();
             this.ReceiveMessagesAsync(ServiceBusConnectionString, QueueName, cts.Token).Wait();
@@ -47,21 +49,23 @@ namespace MedlemServicePuls3060
                 try
                 {
                     // ask for the next message "forever" or until the cancellation token is triggered
-                    lock (Console.Out) Console.WriteLine("{0} {1} - Receiving message from Queue...", DateTime.Now.ToShortDateString(), DateTime.Now.ToLongTimeString());
+                    lock (Console.Out) Console.WriteLine("  {0} - Receiving message from Queue...", DateTime.Now.ToString(DTFormat));
                     var message = await receiver.ReceiveAsync();
 
 
                     if (message != null)
                     {
+                        ScheduledEnqueueTimeUtc = message.ScheduledEnqueueTimeUtc;
+
                         if (Enum.IsDefined(typeof(enumTask), message.Label))
                         {
                             await receiver.CompleteAsync(message.SystemProperties.LockToken);
-                            lock (Console.Out) Console.WriteLine("{0} {1} - Start Job: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToLongTimeString(), message.Label);
+                            lock (Console.Out) Console.WriteLine("{0} - Start Job: {1}", ScheduledEnqueueTimeUtc.ToString(DTFormat), message.Label);
                             JobWorker(message.Label);
                         }
                         else
                         {
-                            lock (Console.Out) Console.WriteLine("{0} {1} - Error Job: {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToLongTimeString(), message.Label);
+                            lock (Console.Out) Console.WriteLine("{0} - Error Job: {1}", ScheduledEnqueueTimeUtc.ToString(DTFormat), message.Label);
                         }
                     }
                 }
@@ -254,7 +258,7 @@ namespace MedlemServicePuls3060
             {
                 foreach (var s in ls)
                 {
-                    var occurrence = CrontabSchedule.Parse(s.Schedule).GetNextOccurrences(DateTime.UtcNow, DateTime.UtcNow.AddHours(3)).GetEnumerator();
+                    var occurrence = CrontabSchedule.Parse(s.Schedule).GetNextOccurrences(DateTime.UtcNow, DateTime.UtcNow.AddHours(48)).GetEnumerator();
                     while (occurrence.MoveNext())
                     {
                         try
@@ -275,7 +279,7 @@ namespace MedlemServicePuls3060
 
                             var recJobqueue = new TblJobqueue()
                             {
-                                 Id = s.Id,
+                                 Scheduleid = s.Id,
                                  Starttime = occurrence.Current,
                                  Jobname = s.Jobname,
                                  Onhold = false,
@@ -283,7 +287,15 @@ namespace MedlemServicePuls3060
                                  Completed = false
                             };
                             db.tblJobqueue.Local.Add(recJobqueue);
-                            db.SaveChanges();                      
+                            try
+                            {
+                                db.SaveChanges();
+
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine(string.Format("Error {0}", e.Message));
+                            }
                         }
                         
                     }
