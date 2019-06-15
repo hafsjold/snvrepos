@@ -93,45 +93,5 @@
 
         public virtual DbSet<TblJobqueue> tblJobqueue { get; set; }
         public virtual DbSet<TblSchedule> tblSchedule { get; set; }
-
-
-        /*
-        public virtual int jobqueueadd(Nullable<System.DateTime> starttime, string jobname, Nullable<int> scheduleid, Nullable<bool> onhold)
-        {
-            var starttimeParameter = starttime.HasValue ?
-                new ObjectParameter("starttime", starttime) :
-                new ObjectParameter("starttime", typeof(System.DateTime));
-    
-            var jobnameParameter = jobname != null ?
-                new ObjectParameter("jobname", jobname) :
-                new ObjectParameter("jobname", typeof(string));
-    
-            var scheduleidParameter = scheduleid.HasValue ?
-                new ObjectParameter("scheduleid", scheduleid) :
-                new ObjectParameter("scheduleid", typeof(int));
-    
-            var onholdParameter = onhold.HasValue ?
-                new ObjectParameter("onhold", onhold) :
-                new ObjectParameter("onhold", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("jobqueueadd", starttimeParameter, jobnameParameter, scheduleidParameter, onholdParameter);
-        }
-    
-        public virtual int jobqueuecomplete(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("jobqueuecomplete", idParameter);
-        }
- 
-        public virtual int jobqueuenext(ObjectParameter id, ObjectParameter jobname)
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("jobqueuenext", id, jobname);
-        }
-       */
-
-
     }
 }
