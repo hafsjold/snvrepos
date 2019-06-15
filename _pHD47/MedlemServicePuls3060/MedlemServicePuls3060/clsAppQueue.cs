@@ -10,9 +10,28 @@ using System.Threading.Tasks;
 using Uniconta.API.System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using NLog;
 
 namespace MedlemServicePuls3060
 {
+    public enum enumTask
+    {
+        ReceiveFilesFromPBS = 1,
+        ProcessType602Files,
+        ProcessType603Files,
+        SendKontingentFileToPBS,
+        LoadSchedule,
+        KontingentNyeMedlemmer,
+        SendEmailRykker,
+        UpdateMedlemStatus,
+        SendEmailAdvis,
+        UpdateKanSlettes,
+        JobQMaintenance,
+        SendEmailKviteringer,
+        OpdaterTransUserData,
+        ImportEmailBilag,
+    }
+
     public class clsAppQueue
     {
         const string ServiceBusConnectionString = "Endpoint=sb://medlemservicebus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=CfRUJ/uGHdBsYKU0psjtjopHaEv15SvT40bi2rpPeoQ=";
@@ -20,11 +39,14 @@ namespace MedlemServicePuls3060
         public static IQueueClient queueClient;
         public static DateTime ScheduledEnqueueTimeUtc;
         public static string DTFormat = "dd/MM/yyyy HH:mm:ss zz";
+        public Logger Log;
 
         //*************************************************************************************************************
         //*************************************************************************************************************
         public clsAppQueue()
         {
+            Log = LogManager.GetLogger("databaseLogger");
+            Log.Log(LogLevel.Info, "Medlem3060Service start");
             try
             {
                 UCInitializer.UnicontaLogin();
@@ -50,6 +72,7 @@ namespace MedlemServicePuls3060
                 {
                     // ask for the next message "forever" or until the cancellation token is triggered
                     lock (Console.Out) Console.WriteLine("  {0} - Receiving message from Queue...", DateTime.Now.ToString(DTFormat));
+
                     var message = await receiver.ReceiveAsync();
 
 
