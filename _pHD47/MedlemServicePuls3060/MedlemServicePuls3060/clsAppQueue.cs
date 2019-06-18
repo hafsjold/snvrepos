@@ -47,6 +47,7 @@ namespace MedlemServicePuls3060
         {
             Log = LogManager.GetLogger("databaseLogger");
             Log.Log(LogLevel.Info, "Medlem3060Service start");
+
             try
             {
                 UCInitializer.UnicontaLogin();
