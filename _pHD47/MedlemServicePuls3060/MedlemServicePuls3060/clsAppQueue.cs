@@ -1,15 +1,11 @@
 ﻿using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.ServiceBus.Core;
-using NCrontab;
 using Pbs3060;
 using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Uniconta.API.System;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using NLog;
 
 namespace MedlemServicePuls3060
@@ -26,7 +22,6 @@ namespace MedlemServicePuls3060
         UpdateMedlemStatus,
         SendEmailAdvis,
         UpdateKanSlettes,
-        JobQMaintenance,
         SendEmailKviteringer,
         OpdaterTransUserData,
         ImportEmailBilag,
@@ -55,7 +50,7 @@ namespace MedlemServicePuls3060
             catch { }
 
             queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
-            Schedule(); 
+            //Schedule(); 
 
             var cts = new CancellationTokenSource();
             this.ReceiveMessagesAsync(ServiceBusConnectionString, QueueName, cts.Token).Wait();
@@ -80,12 +75,12 @@ namespace MedlemServicePuls3060
                     if (message != null)
                     {
                         ScheduledEnqueueTimeUtc = message.ScheduledEnqueueTimeUtc;
-
-                        if (Enum.IsDefined(typeof(enumTask), message.Label))
+                        var body = Encoding.UTF8.GetString(message.Body);
+                        if (Enum.IsDefined(typeof(enumTask), body))
                         {
                             await receiver.CompleteAsync(message.SystemProperties.LockToken);
                             lock (Console.Out) Console.WriteLine("{0} - Start Job: {1}", ScheduledEnqueueTimeUtc.ToString(DTFormat), message.Label);
-                            JobWorker(message.Label);
+                            JobWorker(body);
                         }
                         else
                         {
@@ -171,7 +166,7 @@ namespace MedlemServicePuls3060
                             break;
 
                         case enumTask.LoadSchedule:
-                            Schedule();
+                            //Schedule();
                             break;
 
                         case enumTask.KontingentNyeMedlemmer:
@@ -212,10 +207,6 @@ namespace MedlemServicePuls3060
                         case enumTask.UpdateMedlemStatus:
                             break;
 
-                        case enumTask.JobQMaintenance:
-                            JobQMaintenance();
-                            break;
-
                         case enumTask.SendEmailKviteringer:
                             clsPbs601 objPbs601d = new clsPbs601();
                             CrudAPI apif = UCInitializer.GetBaseAPI;
@@ -250,9 +241,10 @@ namespace MedlemServicePuls3060
         {
             return (T)Enum.Parse(typeof(T), name);
         }
-        
+
         //*************************************************************************************************************
         //*************************************************************************************************************
+        /*
         private void JobQMaintenance()
         {
             using (dbJobQEntities db = new dbJobQEntities())
@@ -260,77 +252,6 @@ namespace MedlemServicePuls3060
                 int count = db.Database.ExecuteSqlCommand(@"DELETE FROM dbo.tblJobqueue WHERE starttime < DATEADD(HOUR,-12,GETDATE())");
             }
         }
-        
-        //*************************************************************************************************************
-        //*************************************************************************************************************
-        public void Schedule()
-        {
-            List<localSchedul> ls = new List<localSchedul>();
-            ls.Add(new localSchedul() { Id = 1, Schedule = "15,45 * * * *", Jobname = enumTask.ReceiveFilesFromPBS.ToString() });
-            ls.Add(new localSchedul() { Id = 2, Schedule = "01 * * * *", Jobname = enumTask.LoadSchedule.ToString() });
-            ls.Add(new localSchedul() { Id = 5, Schedule = "01 06 * * *", Jobname = enumTask.SendEmailRykker.ToString() });
-            ls.Add(new localSchedul() { Id = 6, Schedule = "01 18 * * *", Jobname = enumTask.SendEmailAdvis.ToString() });
-            ls.Add(new localSchedul() { Id = 7, Schedule = "01,16,31,46 * * * *", Jobname = enumTask.KontingentNyeMedlemmer.ToString() });
-            ls.Add(new localSchedul() { Id = 8, Schedule = "01 21 * * *", Jobname = enumTask.SendEmailAdvis.ToString() });
-            ls.Add(new localSchedul() { Id = 9, Schedule = "05 07 * * *", Jobname = enumTask.UpdateKanSlettes.ToString() });
-            ls.Add(new localSchedul() { Id = 10, Schedule = "07 07 * * *", Jobname = enumTask.JobQMaintenance.ToString() });
-            ls.Add(new localSchedul() { Id = 11, Schedule = "03,18,33,48 * * * *", Jobname = enumTask.SendEmailKviteringer.ToString() });
-            ls.Add(new localSchedul() { Id = 14, Schedule = "03 01,07,13,19 * * *", Jobname = enumTask.OpdaterTransUserData.ToString() });
-            ls.Add(new localSchedul() { Id = 15, Schedule = "01 21 12 * *", Jobname = enumTask.SendKontingentFileToPBS.ToString() });
-
-            using (dbJobQEntities db = new dbJobQEntities())
-            {
-                foreach (var s in ls)
-                {
-                    var occurrence = CrontabSchedule.Parse(s.Schedule).GetNextOccurrences(DateTime.UtcNow, DateTime.UtcNow.AddHours(48)).GetEnumerator();
-                    while (occurrence.MoveNext())
-                    {
-                        try
-                        {
-                            var recJobqueue = db.tblJobqueue.Where(j => j.Starttime == occurrence.Current).Where(j => j.Jobname == s.Jobname).Single();
-                        }
-                        catch
-                        {
-
-                            var message = new Microsoft.Azure.ServiceBus.Message(Encoding.UTF8.GetBytes(s.Jobname))
-                            {
-                                Label = s.Jobname,
-                                ContentType = s.Jobname.GetType().ToString(),
-                                ScheduledEnqueueTimeUtc = occurrence.Current
-                            };
-                            // Send the message to the queue.
-                            queueClient.SendAsync(message).Wait();
-
-                            var recJobqueue = new TblJobqueue()
-                            {
-                                 Scheduleid = s.Id,
-                                 Starttime = occurrence.Current,
-                                 Jobname = s.Jobname,
-                                 Onhold = false,
-                                 Selected = false,
-                                 Completed = false
-                            };
-                            db.tblJobqueue.Local.Add(recJobqueue);
-                            try
-                            {
-                                db.SaveChanges();
-
-                            }
-                            catch (Exception e)
-                            {
-                                Console.WriteLine(string.Format("Error {0}", e.Message));
-                            }
-                        }
-                        
-                    }
-                }
-            }
-        }
-        private class localSchedul
-        {
-            public int Id { get; set; }
-            public string Jobname { get; set; }
-            public string Schedule { get; set; }
-        }
+        */
     }
 }
