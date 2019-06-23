@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Uniconta.API.System;
-using NLog;
 
 namespace MedlemServicePuls3060
 {
@@ -34,15 +33,11 @@ namespace MedlemServicePuls3060
         public static IQueueClient queueClient;
         public static DateTime ScheduledEnqueueTimeUtc;
         public static string DTFormat = "dd/MM/yyyy HH:mm:ss zz";
-        public Logger Log;
 
         //*************************************************************************************************************
         //*************************************************************************************************************
         public clsAppQueue()
         {
-            Log = LogManager.GetLogger("databaseLogger");
-            Log.Log(LogLevel.Info, "Medlem3060Service start");
-
             try
             {
                 UCInitializer.UnicontaLogin();
