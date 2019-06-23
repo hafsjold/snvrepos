@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2035
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedlemServicePuls3060", "MedlemServicePuls3060\MedlemServicePuls3060.csproj", "{97DA359C-46CB-454E-85EB-5BBB6C8F8728}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pbs3060", "Pbs3060\Pbs3060.csproj", "{A1609708-AEFA-4CEF-B454-23EB5345B5A9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestPbs3060", "TestPbs3060\TestPbs3060.csproj", "{1963CBFA-5A86-4362-92C6-BE57743B4ADD}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{FE8D1775-C614-4230-A776-5E10AEC89F76}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -28,10 +26,6 @@ Global
 		{A1609708-AEFA-4CEF-B454-23EB5345B5A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1609708-AEFA-4CEF-B454-23EB5345B5A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1609708-AEFA-4CEF-B454-23EB5345B5A9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1963CBFA-5A86-4362-92C6-BE57743B4ADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1963CBFA-5A86-4362-92C6-BE57743B4ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1963CBFA-5A86-4362-92C6-BE57743B4ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1963CBFA-5A86-4362-92C6-BE57743B4ADD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FE8D1775-C614-4230-A776-5E10AEC89F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FE8D1775-C614-4230-A776-5E10AEC89F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE8D1775-C614-4230-A776-5E10AEC89F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
