@@ -102,7 +102,7 @@ namespace nsPbs3060
 
             using (StringWriter sr = new StringWriter())
             {
-
+                /*
                 string ln = @"pid;dato;tekst;beløb";
                 sr.WriteLine(ln);
 
@@ -116,7 +116,8 @@ namespace nsPbs3060
                     sr.WriteLine(ln);
                 }
 
-                byte[] attachment = Encoding.Default.GetBytes(sr.ToString());
+                //byte[] attachment = Encoding.Default.GetBytes(sr.ToString());
+                byte[] attachment = Encoding.Unicode.GetBytes(sr.ToString());
                 VouchersClient vc = new VouchersClient()
                 {
                     Text = "MobilePay",
@@ -127,6 +128,7 @@ namespace nsPbs3060
                 var taskInsertVouchers = m_api.Insert(vc);
                 taskInsertVouchers.Wait();
                 var err = taskInsertVouchers.Result;
+                */
 
                 var GLDailyJournalLines = InsertGLDailyJournalLines(qrybankkonto);
                 return GLDailyJournalLines;
