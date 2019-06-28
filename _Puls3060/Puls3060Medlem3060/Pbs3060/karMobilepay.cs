@@ -103,19 +103,19 @@ namespace nsPbs3060
             using (StringWriter sr = new StringWriter())
             {
 
-                string ln = @"pid;dato;tekst;beløb;saldo";
+                string ln = @"pid;dato;tekst;beløb";
                 sr.WriteLine(ln);
 
                 foreach (var b in qrybankkonto)
                 {
                     ln = "";
-                    ln += b.pid.ToString() + ";";
-                    ln += (b.dato == null) ? ";" : ((DateTime)b.dato).ToString("dd.MM.yyyy") + ";";
-                    ln += (b.tekst == null) ? ";" : b.tekst.Replace(";"," ") + ";";
-                    ln += (b.belob == null) ? ";" : ((decimal)(b.belob)).ToString("0.00") + @";";
-                    ln += (b.saldo == null) ? ";" : ((decimal)(b.saldo)).ToString("0.00");
+                    ln += @"""" + b.pid.ToString() + @"""" + ";";
+                    ln += (b.dato == null) ? ";" : @"""" + ((DateTime)b.dato).ToString("dd.MM.yyyy") + @"""" + ";";
+                    ln += (b.tekst == null) ? ";" : @"""" + b.tekst.Replace(";"," ") + @"""" + ";";
+                    ln += (b.belob == null) ? ";" : @"""" + ((decimal)(b.belob)).ToString("0.00") + @"""";
                     sr.WriteLine(ln);
                 }
+
                 byte[] attachment = Encoding.Default.GetBytes(sr.ToString());
                 VouchersClient vc = new VouchersClient()
                 {
@@ -260,7 +260,6 @@ namespace nsPbs3060
                             TransaktionsID = value[8],
                             Besked = value[9],
                             Gebyr = readBeløb(value[10]),
-                            Saldo = readBeløb(value[11]),
                         };
                         this.Add(rec);
                     }
@@ -298,10 +297,10 @@ namespace nsPbs3060
         {
             var qry = from w in this
                       join b in m_dbData3060.tblmobilepays
-                        on new { date = w.Date, name = w.Navn, type = w.Type, saldo = w.Saldo, transaction_id = w.TransaktionsID }
-                        equals new { date = b.Date, name = b.Navn, type = b.Type, saldo = b.Saldo, transaction_id = b.TransaktionsID } into Mobilepaykonto
-                      from b in Mobilepaykonto.DefaultIfEmpty(new tblmobilepay { pid = 0, Saldo = null })
-                      where b.Saldo == null
+                        on new { date = w.Date, name = w.Navn, type = w.Type, transaction_id = w.TransaktionsID, belob = w.Belob }
+                        equals new { date = b.Date, name = b.Navn, type = b.Type, transaction_id = b.TransaktionsID, belob = b.Belob } into Mobilepaykonto
+                      from b in Mobilepaykonto.DefaultIfEmpty(new tblmobilepay { pid = 0, Belob = null })
+                      where b.Belob == null
                       orderby w.Date
                       select w;
 
@@ -321,8 +320,7 @@ namespace nsPbs3060
                     Date = b.Date,
                     TransaktionsID = b.TransaktionsID,
                     Besked = b.Besked,
-                    Gebyr = b.Gebyr,
-                    Saldo = b.Saldo,
+                    Gebyr = b.Gebyr
                 };
                 m_dbData3060.tblmobilepays.InsertOnSubmit(recMobilepay);
                 m_dbData3060.SubmitChanges(System.Data.Linq.ConflictMode.ContinueOnConflict);
@@ -407,7 +405,7 @@ namespace nsPbs3060
                     saldo = b.Saldo,
                     dato = b.Date,
                     tekst = "Gebyr",
-                    belob = -b.Belob,
+                    belob = b.Belob, //vendt fortegn, tidligere +beløb
                 };
                 b.Imported = true;
                 b.tblbankkontos.Add(recBankkonto);

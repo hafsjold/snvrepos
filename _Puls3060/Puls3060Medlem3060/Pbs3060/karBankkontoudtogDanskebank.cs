@@ -202,13 +202,14 @@ namespace nsPbs3060
                 foreach (var b in qry)
                 {
                     ln = "";
-                    ln += b.pid.ToString() + ";";
-                    ln += (b.dato == null) ? ";" : ((DateTime)b.dato).ToString("dd.MM.yyyy") + ";";
-                    ln += (b.tekst == null) ? ";" : b.tekst.Replace(";"," ") + ";";
-                    ln += (b.belob == null) ? ";" : ((decimal)(b.belob)).ToString("0.00") + @";";
-                    ln += (b.saldo == null) ? ";" : ((decimal)(b.saldo)).ToString("0.00");
+                    ln += @"""" + b.pid.ToString() + @"""" + ";";
+                    ln += (b.dato == null) ? ";" : @"""" + ((DateTime)b.dato).ToString("dd.MM.yyyy") + @"""" + ";";
+                    ln += (b.tekst == null) ? ";" : @"""" + b.tekst.Replace(";", " ") + @"""" + ";";
+                    ln += (b.belob == null) ? ";" : @"""" + ((decimal)(b.belob)).ToString("0.00") + @"""" + ";";
+                    ln += (b.saldo == null) ? ";" : @"""" + ((decimal)(b.saldo)).ToString("0.00") + @"""";
                     sr.WriteLine(ln);
                 }
+
                 byte[] attachment = Encoding.Default.GetBytes(sr.ToString());
                 VouchersClient vc = new VouchersClient()
                 {
