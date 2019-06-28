@@ -57,8 +57,6 @@
             this.toolStripImpoetEmailBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolExportMobilePay = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolExportDanskebank = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -178,7 +176,7 @@
             // 
             this.exportMobilePayToolStripMenuItem.Name = "exportMobilePayToolStripMenuItem";
             this.exportMobilePayToolStripMenuItem.Size = new System.Drawing.Size(273, 22);
-            this.exportMobilePayToolStripMenuItem.Text = "Export MobilePay";
+            this.exportMobilePayToolStripMenuItem.Text = "Import MobilePay";
             this.exportMobilePayToolStripMenuItem.Click += new System.EventHandler(this.exportMobilePayToolStripMenuItem_Click);
             // 
             // posterTilRegnskabToolStripMenuItem
@@ -268,8 +266,6 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripImpoetEmailBilag,
             this.toolStripSeparator3,
-            this.toolExportDanskebank,
-            this.toolStripSeparator5,
             this.toolExportMobilePay});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
@@ -298,24 +294,9 @@
             this.toolExportMobilePay.Image = ((System.Drawing.Image)(resources.GetObject("toolExportMobilePay.Image")));
             this.toolExportMobilePay.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolExportMobilePay.Name = "toolExportMobilePay";
-            this.toolExportMobilePay.Size = new System.Drawing.Size(103, 22);
-            this.toolExportMobilePay.Text = "Export MobilePay";
+            this.toolExportMobilePay.Size = new System.Drawing.Size(116, 22);
+            this.toolExportMobilePay.Text = "Importer MobilePay";
             this.toolExportMobilePay.Click += new System.EventHandler(this.toolExportMobilePay_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolExportDanskebank
-            // 
-            this.toolExportDanskebank.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolExportDanskebank.Image = ((System.Drawing.Image)(resources.GetObject("toolExportDanskebank.Image")));
-            this.toolExportDanskebank.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolExportDanskebank.Name = "toolExportDanskebank";
-            this.toolExportDanskebank.Size = new System.Drawing.Size(111, 22);
-            this.toolExportDanskebank.Text = "Export DanskeBank";
-            this.toolExportDanskebank.Click += new System.EventHandler(this.toolExportDanskebank_Click);
             // 
             // FrmMain
             // 
@@ -365,7 +346,6 @@
         private System.Windows.Forms.ToolStripMenuItem uniContaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem impoerEmailBilagToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem posterTilRegnskabToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sysInfoToolStripMenuItem;
@@ -375,7 +355,6 @@
         private System.Windows.Forms.ToolStripMenuItem medlemsListeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem posterTilRegnskabSidsteRegnskabsårToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nytMedlemToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton toolExportDanskebank;
     }
 }
 

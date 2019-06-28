@@ -210,7 +210,8 @@ namespace nsPbs3060
                     sr.WriteLine(ln);
                 }
 
-                byte[] attachment = Encoding.Default.GetBytes(sr.ToString());
+                //byte[] attachment = Encoding.Default.GetBytes(sr.ToString());
+                byte[] attachment = Encoding.GetEncoding(1251).GetBytes(sr.ToString());
                 VouchersClient vc = new VouchersClient()
                 {
                     Text = "DanskeErhverv",
