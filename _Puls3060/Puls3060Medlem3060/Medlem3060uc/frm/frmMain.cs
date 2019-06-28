@@ -163,20 +163,6 @@ namespace Medlem3060uc
                 global::Medlem3060uc.Properties.Resources.Message_info); //iconSet   
         }
 
-        private void exportDanskeErhvervToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(Program.dbData3060, UCInitializer.GetBaseAPI, 1, KarBankkontoudtogDanskebank.action.import);
-            recBankkontoudtogDanskebank.load();
-            recBankkontoudtogDanskebank.export();
-            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
-                "Medlem3060uc", //titleString   
-                "Danske Erhverv Kontoudtog uploaded til UniConta.", //bigString 
-                null, //smallString
-                null, //leftButton
-                "OK", //rightButton
-                global::Medlem3060uc.Properties.Resources.Message_info); //iconSet   
-        }
-
         private void toolStripDanskeErhvervExport_Click(object sender, EventArgs e)
         {
             KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(Program.dbData3060, UCInitializer.GetBaseAPI, 1, KarBankkontoudtogDanskebank.action.import);
@@ -255,6 +241,11 @@ namespace Medlem3060uc
                 frmNytMedlem.MdiParent = this;
                 frmNytMedlem.Show();
             }
+        }
+
+        private void toolExportDanskebank_Click(object sender, EventArgs e)
+        {
+            toolStripDanskeErhvervExport_Click(sender, e);
         }
     }
 }
