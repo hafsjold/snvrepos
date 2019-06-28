@@ -58,6 +58,7 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolExportMobilePay = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolExportDanskebank = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -222,28 +223,28 @@
             // sysInfoToolStripMenuItem
             // 
             this.sysInfoToolStripMenuItem.Name = "sysInfoToolStripMenuItem";
-            this.sysInfoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sysInfoToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.sysInfoToolStripMenuItem.Text = "SysInfo";
             this.sysInfoToolStripMenuItem.Click += new System.EventHandler(this.sysInfoToolStripMenuItem_Click);
             // 
             // kontingentToolStripMenuItem
             // 
             this.kontingentToolStripMenuItem.Name = "kontingentToolStripMenuItem";
-            this.kontingentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.kontingentToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.kontingentToolStripMenuItem.Text = "Kontingent";
             this.kontingentToolStripMenuItem.Click += new System.EventHandler(this.kontingentToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
             this.toolStripMenuItem1.Text = "Kreditor";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
             // 
             // pbsfilesToolStripMenuItem
             // 
             this.pbsfilesToolStripMenuItem.Name = "pbsfilesToolStripMenuItem";
-            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.pbsfilesToolStripMenuItem.Text = "Pbsfiles";
             this.pbsfilesToolStripMenuItem.Click += new System.EventHandler(this.pbsfilesToolStripMenuItem_Click);
             // 
@@ -267,8 +268,9 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripImpoetEmailBilag,
             this.toolStripSeparator3,
-            this.toolExportMobilePay,
-            this.toolStripSeparator5});
+            this.toolExportDanskebank,
+            this.toolStripSeparator5,
+            this.toolExportMobilePay});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1024, 25);
@@ -304,6 +306,16 @@
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolExportDanskebank
+            // 
+            this.toolExportDanskebank.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolExportDanskebank.Image = ((System.Drawing.Image)(resources.GetObject("toolExportDanskebank.Image")));
+            this.toolExportDanskebank.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolExportDanskebank.Name = "toolExportDanskebank";
+            this.toolExportDanskebank.Size = new System.Drawing.Size(111, 22);
+            this.toolExportDanskebank.Text = "Export DanskeBank";
+            this.toolExportDanskebank.Click += new System.EventHandler(this.toolExportDanskebank_Click);
             // 
             // FrmMain
             // 
@@ -363,6 +375,7 @@
         private System.Windows.Forms.ToolStripMenuItem medlemsListeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem posterTilRegnskabSidsteRegnskabsårToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nytMedlemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolExportDanskebank;
     }
 }
 
