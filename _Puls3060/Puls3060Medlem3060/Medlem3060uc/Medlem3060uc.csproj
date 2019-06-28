@@ -39,7 +39,7 @@
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>16</ApplicationRevision>
+    <ApplicationRevision>17</ApplicationRevision>
     <ApplicationVersion>9.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -139,15 +139,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\Interop.VBIDE.dll</HintPath>
     </Reference>
-    <Reference Include="MailKit, Version=2.1.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
-      <HintPath>..\packages\MailKit.2.1.5.1\lib\net45\MailKit.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MailKit, Version=2.2.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.2.2.0\lib\net45\MailKit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="MimeKit, Version=2.1.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
-      <HintPath>..\packages\MimeKit.2.1.5.1\lib\net45\MimeKit.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MimeKit, Version=2.2.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.2.2.0\lib\net45\MimeKit.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -179,13 +177,11 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Uniconta.Common, Version=1.0.7087.16591, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Uniconta.Common.1.1.81.2\lib\portable40-net40+win8\Uniconta.Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Uniconta.Common, Version=1.0.7092.22476, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Uniconta.Common.1.1.81.3\lib\portable40-net40+win8\Uniconta.Common.dll</HintPath>
     </Reference>
     <Reference Include="Uniconta.WindowsAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.81.2\lib\net452\Uniconta.WindowsAPI.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.81.3\lib\net452\Uniconta.WindowsAPI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

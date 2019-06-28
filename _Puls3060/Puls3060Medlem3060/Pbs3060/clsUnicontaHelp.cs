@@ -204,7 +204,7 @@ namespace nsPbs3060
                             }
                         }
 
-                        if (objParam == null)
+                        if ((objParam == null) || (objParam.Delsystem == null))
                         {
                             objParam = new clsParam()
                             {
@@ -405,7 +405,7 @@ namespace nsPbs3060
                             }
                         }
 
-                        if (objParam == null)
+                        if ((objParam == null) || (objParam.Delsystem == null))
                         {
                             objParam = new clsParam()
                             {
